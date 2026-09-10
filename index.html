@@ -3,1251 +3,213 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>통합설계 사례 분석 워크북</title>
+<title>통합설계 실습 게이트</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gothic+A1:wght@400;500;700;900&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jua&family=Gothic+A1:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500;600&display=swap">
 <style>
   :root{
-    --bg:#F6F9F8; --surface:#FFFFFF; --surface-2:#E8F1F1;
-    --ink:#17302E; --ink-muted:#5B706E; --border:#D3E2E0;
-    --accent:#1F5C5C; --accent-2:#2E8B8B; --accent-ink:#FFFFFF;
-    --amber-bg:#FDECC8; --amber-ink:#8A5A00;
-    --green-bg:#E4F3E1; --green-ink:#2E6B33;
-    --danger:#C0392B;
-    --shadow:0 1px 2px rgba(23,48,46,.06), 0 4px 14px rgba(23,48,46,.07);
-    --radius:12px;
-    --font-display:'Gowun Batang', 'Noto Serif KR', serif;
-    --font-body:'Gothic A1','Apple SD Gothic Neo',sans-serif;
-    --font-mono:'IBM Plex Mono',monospace;
+    --bg:#F2FAF6; --surface:#FFFFFF; --surface-2:#E7F5EF;
+    --ink:#163430; --ink-muted:#5C7D76; --border:#D3EBE2;
+    --teal:#1F5C5C; --teal-deep:#123F3F; --teal-soft:#2E8B8B;
+    --coral:#FF7A59; --coral-deep:#E85A3B; --coral-light:#FFE7DB;
+    --sun:#FFC857;
+    --shadow:0 2px 6px rgba(18,63,63,.06), 0 18px 40px -18px rgba(18,63,63,.28);
+    --blob-a: rgba(46,139,139,.16);
+    --blob-b: rgba(255,122,89,.14);
   }
   @media (prefers-color-scheme: dark){
     :root:not([data-theme="light"]){
-      --bg:#0E1B1A; --surface:#142624; --surface-2:#1B322F;
-      --ink:#E7F1EF; --ink-muted:#9FB6B3; --border:#274543;
-      --accent:#2B6F6B; --accent-2:#6FC7C2; --accent-ink:#FFFFFF;
-      --amber-bg:#4A3B14; --amber-ink:#F5D78E;
-      --green-bg:#1E3A22; --green-ink:#9FDDA6;
-      --danger:#E06456;
-      --shadow:0 1px 2px rgba(0,0,0,.4), 0 4px 16px rgba(0,0,0,.35);
+      --bg:#0C1D1B; --surface:#123331; --surface-2:#173F3A;
+      --ink:#EAF6F0; --ink-muted:#94BAB1; --border:#22463F;
+      --teal:#59BDB5; --teal-deep:#2E8B8B; --teal-soft:#7ED0C8;
+      --coral:#FF9573; --coral-deep:#FF7A59; --coral-light:#33251F;
+      --sun:#FFD37A;
+      --shadow:0 2px 8px rgba(0,0,0,.35), 0 20px 44px -18px rgba(0,0,0,.55);
+      --blob-a: rgba(89,189,181,.14);
+      --blob-b: rgba(255,149,115,.12);
     }
   }
   :root[data-theme="dark"]{
-    --bg:#0E1B1A; --surface:#142624; --surface-2:#1B322F;
-    --ink:#E7F1EF; --ink-muted:#9FB6B3; --border:#274543;
-    --accent:#2B6F6B; --accent-2:#6FC7C2; --accent-ink:#FFFFFF;
-    --amber-bg:#4A3B14; --amber-ink:#F5D78E;
-    --green-bg:#1E3A22; --green-ink:#9FDDA6;
-    --danger:#E06456;
-    --shadow:0 1px 2px rgba(0,0,0,.4), 0 4px 16px rgba(0,0,0,.35);
+    --bg:#0C1D1B; --surface:#123331; --surface-2:#173F3A;
+    --ink:#EAF6F0; --ink-muted:#94BAB1; --border:#22463F;
+    --teal:#59BDB5; --teal-deep:#2E8B8B; --teal-soft:#7ED0C8;
+    --coral:#FF9573; --coral-deep:#FF7A59; --coral-light:#33251F;
+    --sun:#FFD37A;
+    --shadow:0 2px 8px rgba(0,0,0,.35), 0 20px 44px -18px rgba(0,0,0,.55);
+    --blob-a: rgba(89,189,181,.14);
+    --blob-b: rgba(255,149,115,.12);
   }
+
   *{box-sizing:border-box;}
-  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);}
-  .app-shell{display:flex;min-height:100dvh;}
-  .rail{width:230px;flex:none;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;padding:22px 0;}
-  .rail-brand{padding:0 20px 16px;border-bottom:1px solid var(--border);margin-bottom:10px;}
-  .rail-brand .eyebrow{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.06em;color:var(--ink-muted);text-transform:uppercase;display:block;}
-  .rail-brand h1{font-family:var(--font-display);font-size:18px;margin:6px 0 0;line-height:1.35;}
-  .day-tab{display:flex;align-items:center;gap:10px;padding:13px 20px;font-weight:700;font-size:14px;color:var(--ink-muted);cursor:pointer;border-left:3px solid transparent;user-select:none;}
-  .day-tab .num{font-family:var(--font-mono);font-size:12px;background:var(--surface-2);color:var(--accent);width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none;}
-  .day-tab.active{color:var(--accent);border-left-color:var(--accent);background:var(--surface-2);}
-  .day-tab.active .num{background:var(--accent);color:var(--accent-ink);}
-  .day-tab.soon{opacity:.6;}
-  .day-tab .tag-soon{margin-left:auto;font-size:9.5px;font-family:var(--font-mono);background:var(--surface-2);color:var(--ink-muted);padding:2px 6px;border-radius:20px;}
-  .rail-foot{margin-top:auto;padding:14px 20px 0;font-size:11px;color:var(--ink-muted);border-top:1px solid var(--border);line-height:1.6;}
-
-  .main{flex:1;min-width:0;display:flex;flex-direction:column;}
-  .topbar{position:sticky;top:0;z-index:5;background:var(--surface);border-bottom:1px solid var(--border);padding:14px 26px;display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;box-shadow:var(--shadow);}
-  .field{display:flex;flex-direction:column;gap:4px;min-width:0;}
-  .field label{font-size:10.5px;color:var(--ink-muted);font-weight:700;letter-spacing:.02em;}
-  input[type=text],input[type=file],textarea,select{
-    font-family:var(--font-body);font-size:13.5px;color:var(--ink);background:var(--bg);
-    border:1px solid var(--border);border-radius:8px;padding:8px 10px;
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:'Gothic A1','Apple SD Gothic Neo',sans-serif;
+    min-height:100dvh;
+    padding:28px 20px 48px;
+    position:relative; overflow-x:hidden;
   }
-  select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6'><path d='M0 0l5 6 5-6z' fill='%235B706E'/></svg>");background-repeat:no-repeat;background-position:right 10px center;padding-right:26px;cursor:pointer;}
-  textarea{resize:none;overflow:hidden;min-height:46px;line-height:1.55;width:100%;}
-  input:focus,textarea:focus,select:focus{outline:2px solid var(--accent-2);outline-offset:1px;border-color:var(--accent-2);}
-  #participantSelect{min-width:230px;}
-  .metaField input{width:150px;}
-  .toolbar{display:flex;gap:8px;margin-left:auto;flex-wrap:wrap;align-items:center;}
-  .btn{font-family:var(--font-body);font-weight:700;font-size:12.5px;border-radius:8px;padding:9px 13px;border:1px solid transparent;cursor:pointer;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;background:var(--surface);}
-  .btn-primary{background:var(--accent);color:var(--accent-ink);}
-  .btn-outline{background:transparent;color:var(--accent);border-color:var(--accent);}
-  .btn-ghost{background:var(--surface-2);color:var(--ink);}
-  .btn-teal{background:var(--accent-2);color:#fff;}
-  .btn:hover{filter:brightness(1.07);}
-  .btn:active{filter:brightness(.97);}
-  .btn-sm{padding:6px 10px;font-size:11.5px;}
-  .btn-danger-ghost{background:transparent;color:var(--danger);border:1px solid var(--danger);padding:4px 10px;font-size:11.5px;border-radius:6px;}
-  .autosave-status{font-family:var(--font-mono);font-size:10.5px;color:var(--ink-muted);display:flex;align-items:center;gap:6px;}
-  .dot{width:7px;height:7px;border-radius:50%;background:var(--ink-muted);flex:none;}
-  .dot.dirty{background:var(--danger);}
-  .dot.saved{background:var(--green-ink);}
-  .toggle-line{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--ink-muted);}
+  body::before, body::after{
+    content:""; position:absolute; border-radius:50%; filter:blur(60px);
+    z-index:0; pointer-events:none;
+  }
+  body::before{ width:360px; height:360px; background:var(--blob-a); top:-120px; right:-90px; }
+  body::after{ width:300px; height:300px; background:var(--blob-b); bottom:-80px; left:-100px; }
 
-  .content{padding:26px 28px 60px;max-width:1040px;width:100%;margin:0 auto;}
-  .hero{margin-bottom:18px;}
-  .hero .eyebrow{font-family:var(--font-mono);font-size:11.5px;color:var(--accent-2);letter-spacing:.08em;text-transform:uppercase;}
-  .hero h2{font-family:var(--font-display);font-size:clamp(22px,3vw,29px);margin:6px 0;text-wrap:balance;}
-  .hero p{color:var(--ink-muted);font-size:13.5px;max-width:66ch;margin:0;}
+  .wrap{ position:relative; z-index:1; max-width:720px; margin:0 auto; }
 
-  .meta-strip{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:12px 18px;margin-bottom:18px;font-size:13px;display:flex;flex-wrap:wrap;gap:6px 22px;}
-  .meta-strip b{color:var(--accent-2);font-weight:700;margin-right:4px;}
-  .meta-strip span.val{font-family:var(--font-mono);}
+  .topbar{
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    margin-bottom:22px; flex-wrap:wrap;
+  }
+  .topbar .org{
+    font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:600;
+    color:var(--teal-deep); letter-spacing:.03em;
+  }
+  .topbar .badge{
+    font-size:11px; font-weight:700; color:var(--teal-deep); background:var(--surface-2);
+    border:1px solid var(--border); padding:5px 12px; border-radius:20px;
+  }
 
-  .banner{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius);padding:14px 18px;font-size:13.5px;color:var(--ink);margin-bottom:20px;line-height:1.65;}
-  .banner b{color:var(--accent);}
+  .card{
+    background:var(--surface); border:1px solid var(--border); border-radius:28px;
+    box-shadow:var(--shadow); padding:40px 36px 32px;
+  }
 
-  .divider-tag{background:var(--accent);color:var(--accent-ink);border-radius:var(--radius);padding:12px 18px;font-weight:700;font-size:14.5px;margin:26px 0 18px;box-shadow:var(--shadow);}
-  .divider-tag .sub{display:block;font-weight:400;font-style:italic;font-size:12px;color:var(--surface-2);opacity:.9;margin-top:2px;}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:6px;
+    background:var(--surface-2); color:var(--teal-deep); font-weight:700; font-size:12.5px;
+    padding:7px 14px; border-radius:20px; margin-bottom:18px; border:1px solid var(--border);
+  }
+  .eyebrow .dot{ width:6px; height:6px; border-radius:50%; background:var(--coral); flex:none; }
 
-  details.ref-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:18px;box-shadow:var(--shadow);overflow:hidden;}
-  details.ref-card summary{padding:13px 18px;font-weight:700;cursor:pointer;color:var(--accent);list-style:none;display:flex;align-items:center;gap:8px;font-size:14px;}
-  details.ref-card summary::-webkit-details-marker{display:none;}
-  details.ref-card summary::before{content:'▸';transition:transform .15s;display:inline-block;}
-  details[open].ref-card summary::before{transform:rotate(90deg);}
-  .ref-card .inner{padding:2px 18px 16px;}
+  h1{
+    font-family:'Jua','Gothic A1',sans-serif; font-weight:400;
+    font-size:clamp(28px,5vw,40px); line-height:1.28; margin:0 0 12px; text-wrap:balance;
+    color:var(--ink);
+  }
+  h1 .accent{ color:var(--teal-soft); }
 
-  .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:22px;box-shadow:var(--shadow);overflow:hidden;}
-  .card-head{background:var(--accent);color:var(--accent-ink);padding:13px 18px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;}
-  .card-head.teal{background:var(--accent-2);}
-  .card-head h3{font-family:var(--font-display);font-size:16.5px;margin:0;}
-  .card-head .stage{font-size:11.5px;font-style:italic;color:var(--surface-2);opacity:.9;}
-  .card-body{padding:18px;}
-  .hint{font-size:12.5px;color:var(--ink-muted);font-style:italic;margin:0 0 14px;line-height:1.6;}
-  .q-label{font-weight:700;font-size:13px;margin:14px 0 6px;color:var(--ink);}
-  .q-label:first-child{margin-top:0;}
-  .field-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px 16px;}
-  .field-grid .full{grid-column:1/-1;}
-  .field-grid label{font-size:11.5px;font-weight:700;color:var(--ink-muted);display:block;margin-bottom:4px;}
+  .sub{ color:var(--ink-muted); font-size:15px; line-height:1.7; margin:0 0 30px; max-width:52ch; }
 
-  .padlet-link{display:inline-flex;align-items:center;gap:8px;background:var(--surface-2);border:1px solid var(--accent-2);color:var(--accent);font-weight:700;font-size:13px;padding:9px 14px;border-radius:8px;text-decoration:none;margin:4px 0 14px;}
-  .padlet-link:hover{filter:brightness(1.05);}
+  .actions{ display:flex; gap:14px; flex-wrap:wrap; margin-bottom:28px; }
+  .action{
+    flex:1 1 240px; display:flex; flex-direction:column; gap:10px;
+    text-decoration:none; border-radius:20px; padding:22px 22px 20px;
+    border:1.5px solid transparent; transition:transform .15s ease, box-shadow .15s ease;
+    cursor:pointer;
+  }
+  .action:hover{ transform:translateY(-2px); }
+  .action.primary{
+    background:linear-gradient(135deg,var(--teal) 0%,var(--teal-soft) 100%);
+    color:#fff; box-shadow:0 14px 28px -12px rgba(31,92,92,.55);
+  }
+  .action.secondary{
+    background:var(--surface); border-color:var(--border); color:var(--ink);
+  }
+  .action .icon{
+    width:34px; height:34px; border-radius:10px; display:flex; align-items:center; justify-content:center;
+    background:rgba(255,255,255,.22);
+  }
+  .action.secondary .icon{ background:var(--coral-light); }
+  .action.secondary .icon svg{ stroke:var(--coral-deep); }
+  .action .icon svg{ width:18px; height:18px; stroke:#fff; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+  .action .label{ font-weight:900; font-size:16.5px; }
+  .action .desc{ font-size:12.5px; line-height:1.55; opacity:.92; }
+  .action.secondary .desc{ color:var(--ink-muted); opacity:1; }
 
-  .example-box{background:var(--surface-2);border:1px solid var(--accent-2);border-radius:10px;padding:12px 16px;font-size:12.5px;color:var(--ink);margin-bottom:14px;line-height:1.7;}
-  .example-box .ttl{font-weight:700;color:var(--accent);display:block;margin-bottom:6px;}
-  .example-box code{font-family:var(--font-mono);}
+  .steps{
+    display:flex; align-items:stretch; gap:0; border-top:1px dashed var(--border); padding-top:22px;
+    flex-wrap:wrap;
+  }
+  .step{ flex:1 1 140px; display:flex; align-items:flex-start; gap:10px; padding:4px 6px; }
+  .step .num{
+    font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:12px;
+    width:22px; height:22px; border-radius:50%; background:var(--surface-2); color:var(--teal-deep);
+    display:flex; align-items:center; justify-content:center; flex:none; margin-top:1px;
+  }
+  .step p{ margin:0; font-size:13px; line-height:1.5; color:var(--ink); font-weight:500; }
+  .step .arrow{ display:flex; align-items:center; color:var(--border); font-size:16px; padding:0 4px; flex:none; }
+  .step .arrow{ align-self:center; }
 
-  .tbl-wrap{overflow-x:auto;}
-  table.grid{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0;}
-  table.grid th{background:var(--accent);color:var(--accent-ink);padding:8px 9px;font-size:12px;text-align:left;}
-  table.grid td{border:1px solid var(--border);padding:5px;vertical-align:top;}
-  table.grid td textarea, table.grid td input{border:none;background:transparent;padding:5px;width:100%;min-height:38px;}
-  table.grid td select{width:auto;min-width:110px;min-height:34px;padding:6px 26px 6px 10px;margin:2px;border:1px solid var(--accent-2);border-radius:6px;background-color:var(--surface);color:var(--accent);font-weight:700;}
-  table.grid tr:nth-child(even) td{background:var(--surface-2);}
-  .row-actions{text-align:center;white-space:nowrap;}
-  .add-row-btn{margin-top:4px;}
-  td.cat-label{background:var(--surface-2);font-weight:700;text-align:center;color:var(--accent);white-space:nowrap;}
+  .footer{ margin-top:26px; text-align:center; }
+  .footer p{ margin:0 0 6px; font-size:12.5px; color:var(--ink-muted); line-height:1.7; }
+  .footer a{ color:var(--teal-soft); font-weight:700; text-decoration:none; }
+  .footer .note{
+    margin-top:14px; font-size:11.5px; color:var(--ink-muted); opacity:.85;
+    border-top:1px solid var(--border); padding-top:14px;
+  }
+  .footer .credit{
+    margin-top:14px; font-family:'IBM Plex Mono',monospace; font-size:11px;
+    color:var(--ink-muted); opacity:.75; letter-spacing:.01em;
+  }
+  .footer .credit b{ color:var(--teal-deep); font-weight:600; }
+  .toast{
+    position:fixed; left:50%; bottom:28px; transform:translateX(-50%) translateY(20px);
+    background:var(--teal-deep); color:#fff; font-size:13px; font-weight:600;
+    padding:12px 20px; border-radius:14px; box-shadow:var(--shadow);
+    opacity:0; pointer-events:none; transition:opacity .2s ease, transform .2s ease;
+    z-index:10;
+  }
+  .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
 
-  .callout{border-radius:8px;padding:10px 14px;font-size:12.5px;margin-top:12px;display:flex;gap:8px;line-height:1.6;}
-  .callout.amber{background:var(--amber-bg);color:var(--amber-ink);}
-
-  .grasps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px;}
-  .grasps-cell label{font-weight:700;font-size:12px;color:var(--accent-2);display:block;margin-bottom:4px;}
-
-  .matrix-table th.corner{white-space:normal;font-size:11px;}
-  .matrix-table .head-cell{display:flex;align-items:center;gap:4px;}
-  .matrix-table .head-cell input{background:transparent;border:none;color:var(--accent-ink);font-weight:700;font-size:12px;padding:2px 0;width:100%;}
-  .matrix-table th{vertical-align:middle;}
-  .mini-x{background:rgba(255,255,255,.25);color:var(--accent-ink);border:none;border-radius:50%;width:16px;height:16px;line-height:1;cursor:pointer;flex:none;font-size:11px;}
-  .mini-add{white-space:nowrap;}
-  .matrix-table td textarea{min-height:32px;}
-
-  .appendix .search-row{display:flex;gap:8px;margin-bottom:10px;align-items:center;}
-  .appendix .search-row input{flex:1;max-width:280px;}
-  .appendix-note{font-size:11.5px;color:var(--ink-muted);margin-top:10px;line-height:1.7;}
-
-  .day-placeholder{padding:70px 20px;text-align:center;color:var(--ink-muted);}
-  .day-placeholder .big{font-family:var(--font-display);font-size:21px;color:var(--ink);margin-bottom:8px;}
-  .day-placeholder .icon{font-size:34px;margin-bottom:14px;}
-
-  .static-6table td:first-child,.static-6table th:first-child{width:56px;text-align:center;}
-  .static-6table td:nth-child(2),.static-6table th:nth-child(2){width:130px;}
-
-  @media (max-width:760px){
-    .app-shell{flex-direction:column;}
-    .rail{width:100%;flex-direction:row;overflow-x:auto;padding:8px;border-right:none;border-bottom:1px solid var(--border);}
-    .rail-brand,.rail-foot{display:none;}
-    .day-tab{border-left:none;border-bottom:3px solid transparent;padding:10px 14px;flex:none;}
-    .day-tab.active{border-left-color:transparent;border-bottom-color:var(--accent);}
-    .topbar{padding:12px 16px;}
-    .content{padding:16px 16px 50px;}
-    .grasps-grid{grid-template-columns:1fr;}
-    .field-grid{grid-template-columns:1fr;}
-    #participantSelect{min-width:0;width:100%;}
+  @media (max-width:520px){
+    .card{ padding:30px 22px 26px; border-radius:22px; }
+    .actions{ flex-direction:column; }
+    .steps{ flex-direction:column; gap:10px; }
+    .step .arrow{ display:none; }
   }
 </style>
-
 </head>
 <body>
+<div class="wrap">
+  <div class="topbar">
+    <span class="org">2026 여주 교육과정·수업·평가 통합설계 직무연수 · 다온 아카데미 2기</span>
+    <span class="badge">1회차 실습 도구</span>
+  </div>
 
-<div class="app-shell" id="app">
-  <aside class="rail">
-    <div class="rail-brand">
-      <span class="eyebrow">2026 여주 교수평통 연수</span>
-      <h1>교육과정-수업-평가<br>통합설계 사례 분석하기</h1>
-    </div>
-    <div class="day-tab active" data-day="day1"><span class="num">1</span> 1일차 활동지</div>
-    <div class="day-tab soon" data-day="day2"><span class="num">2</span> 2일차 활동지 <span class="tag-soon">준비중</span></div>
-    <div class="day-tab soon" data-day="day3"><span class="num">3</span> 3일차 활동지 <span class="tag-soon">준비중</span></div>
-    <div class="rail-foot">다온 아카데미 2기<br>1회차 2교시 · 웹앱판 v2</div>
-  </aside>
+  <div class="card">
+    <span class="eyebrow"><span class="dot"></span>2022 개정 교육과정 · 백워드설계</span>
+    <h1>교육과정-수업-평가<br><span class="accent">통합설계</span> 사례 분석하기</h1>
+    <p class="sub">배정받은 교과별 장학자료를 6개 미션으로 함께 점검하는 실습 웹앱입니다. 아래 버튼 하나로 바로 시작하거나, 학교 네트워크 상황에 맞춰 파일로 내려받아 두세요.</p>
 
-  <div class="main">
-    <div class="topbar">
-      <div class="field">
-        <label for="participantSelect">참가자 선택 (자동입력)</label>
-        <select id="participantSelect"><option value="">— 이름을 선택하면 아래 정보가 채워집니다 —</option></select>
-      </div>
-      <div class="field metaField"><label for="metaSchool">소속(학교)</label><input type="text" id="metaSchool" placeholder="예: 여주중"></div>
-      <div class="field metaField"><label for="metaName">성명</label><input type="text" id="metaName" placeholder="예: 고금비"></div>
-      <div class="field metaField"><label for="metaSubject">배정 교과</label><input type="text" id="metaSubject" placeholder="예: 국어"></div>
-      <div class="field metaField"><label for="metaMaterial">배정 자료(급/과목)</label><input type="text" id="metaMaterial" placeholder="예: 중학교 국어"></div>
-
-      <div class="toolbar">
-        <div class="autosave-status"><span class="dot saved" id="statusDot"></span><span id="statusText">저장된 변경 없음</span></div>
-        <label class="toggle-line"><input type="checkbox" id="autosaveToggle" checked style="width:14px;height:14px;"> 자동저장(5분)</label>
-        <input type="file" id="loadInput" accept="application/json" style="display:none">
-        <button class="btn btn-ghost" onclick="document.getElementById('loadInput').click()">📂 불러오기</button>
-        <button class="btn btn-outline" onclick="saveJSON(false)">💾 저장(JSON)</button>
-        <button class="btn btn-outline" onclick="downloadWordDoc()">📝 Word(.docx)</button>
-        <button class="btn btn-primary" onclick="downloadPDF()">📄 PDF 다운로드</button>
-      </div>
+    <div class="actions">
+      <a class="action primary" href="app.html" target="_blank" rel="noopener">
+        <span class="icon"><svg viewBox="0 0 24 24"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg></span>
+        <span class="label">웹에서 바로 시작</span>
+        <span class="desc">설치 없이 브라우저에서 즉시 실행됩니다</span>
+      </a>
+      <a class="action secondary" id="downloadBtn" href="app.html" download="1일차_설계사례분석_웹앱.html">
+        <span class="icon"><svg viewBox="0 0 24 24"><path d="M12 3v12"></path><polyline points="7 10 12 15 17 10"></polyline><path d="M4 19h16"></path></svg></span>
+        <span class="label">실습지 내려받기</span>
+        <span class="desc">클릭하면 컴퓨터에 파일로 저장돼요. 저장된 파일을 더블클릭하면 인터넷 없이도 그대로 실행됩니다</span>
+      </a>
     </div>
 
-    <div class="content">
-      <section id="day1Section">
-        <div class="hero capture-unit">
-          <span class="eyebrow">1회차 · 2교시 · 핵심 요약판</span>
-          <h2>교육과정-수업-평가 통합설계 사례 분석하기</h2>
-          <p>교과별 장학자료 설계 사례 분석 활동지 — 배정받은 예시자료를 6개 미션을 따라가며 점검하고, 국가교육과정 문서와 비교해 빠진 부분을 직접 채워보세요.</p>
-        </div>
-
-        <!-- 0. 나의 단원 설계 -->
-        <div class="card capture-unit">
-          <div class="card-head teal"><h3>0. 나의 단원 설계, 출발점 잡기</h3></div>
-          <div class="card-body">
-            <p class="hint">오늘부터 3회차까지, 여기서 정한 단원을 계속 설계해 나갑니다. 지금 단원을 정해두면 오늘 활동이 '남의 사례 구경'이 아니라 '내 수업 준비'가 됩니다. (10월·11월 중 실제로 가르칠 단원 기준으로 적어주세요)</p>
-            <div class="field-grid">
-              <div><label for="u0_subjectGrade">교과 / 학년(군)</label><input type="text" id="u0_subjectGrade"></div>
-              <div><label for="u0_schedule">수업 예정 시기</label><input type="text" id="u0_schedule" placeholder="예: 2026년 10월 3주"></div>
-              <div><label for="u0_unitName">단원명</label><input type="text" id="u0_unitName"></div>
-              <div><label for="u0_totalLessons">총 차시 수</label><input type="text" id="u0_totalLessons"></div>
-              <div class="full"><label for="u0_myTitle">내가 붙이는 제목</label><input type="text" id="u0_myTitle" placeholder="이 단원 설계에 내가 붙이는 이름"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="divider-tag capture-unit">활동 1 · 교육과정-수업-평가 통합설계 사례 분석하기<span class="sub">교수학습 과정안(장학자료) 검토 — 핵심 요약판</span></div>
-
-        <div class="meta-strip capture-unit" id="metaStrip">
-          <span><b>소속</b><span class="val" id="ms_school">—</span></span>
-          <span><b>성명</b><span class="val" id="ms_name">—</span></span>
-          <span><b>배정교과</b><span class="val" id="ms_subject">—</span></span>
-          <span><b>배정자료</b><span class="val" id="ms_material">—</span></span>
-        </div>
-
-        <div class="banner capture-unit">
-          <b>오늘은 '남을 채점하는 시간'이 아니라 '나를 준비시키는 시간'입니다.</b>
-          배정받은 예시자료를 아래 6단계표 순서로 6개 미션을 따라가며 점검하고, 국가교육과정 문서와 비교하며 빠진 부분을 직접 채워보세요. 오늘 발견한 것이 위 0번에서 정한 내 단원 설계의 출발점이 됩니다.
-        </div>
-
-        <details class="ref-card capture-unit" open>
-          <summary>6단계 로드맵 — 교육과정·수업·평가 통합설계 흐름</summary>
-          <div class="inner tbl-wrap">
-            <table class="grid static-6table">
-              <thead><tr><th>단계</th><th>하위 단계</th><th>주요 내용</th></tr></thead>
-              <tbody>
-                <tr><td>설계</td><td>학습목표설정</td><td>핵심 아이디어 재구성 / 성취기준 분석</td></tr>
-                <tr><td>설계</td><td>평가 계획</td><td>총괄평가 계획 및 수행수준 설정</td></tr>
-                <tr><td>설계</td><td>수업 계획</td><td>학습경험·수업전략 / 진단·형성평가·피드백 전략</td></tr>
-                <tr><td>실행</td><td>차시별 수업·평가</td><td>교수학습 실행 → 형성평가·피드백 → 다음 차시 보완</td></tr>
-                <tr><td>성찰</td><td>단원평가</td><td>수행과제·총괄평가 실시 / 성취수준 확인</td></tr>
-                <tr><td>성찰</td><td>다음 설계</td><td>결과 분석·환류 → 다음 단원 설계</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </details>
-
-        <details class="ref-card capture-unit" open>
-          <summary>용어 정리</summary>
-          <div class="inner">
-            <p style="font-size:13px;line-height:1.8;margin:0;">
-            <b style="color:var(--accent-2)">핵심아이디어</b>(단원을 관통하는 큰 생각) ·
-            <b style="color:var(--accent-2)">백워드설계</b>(총괄평가부터 정하고 거꾸로 설계) ·
-            <b style="color:var(--accent-2)">평가요소</b>(평가로 확인할 것) ·
-            <b style="color:var(--accent-2)">학습요소</b>(학생이 알아야 할 핵심어) ·
-            <b style="color:var(--accent-2)">GRASPS</b>(목표·역할·청중·상황·결과물·기준) ·
-            <b style="color:var(--accent-2)">전이</b>(교실 밖에서도 쓰는 힘) ·
-            <b style="color:var(--accent-2)">공동주도성</b>(교사·학생이 함께 조정)
-            </p>
-          </div>
-        </details>
-
-        <!-- 미션 1 -->
-        <div class="card capture-unit">
-          <div class="card-head"><h3>미션 1. 핵심아이디어, 국가교육과정과 비교하기</h3><span class="stage">[학습목표설정]</span></div>
-          <div class="card-body">
-            <p class="hint">성취기준은 국가교육과정에서 그대로 가져다 쓰는 것이 원칙이라 바뀌지 않습니다. 여기서는 핵심아이디어만 — 배정자료가 원문 그대로 썼는지, 재구성했는지 확인합니다.</p>
-            <div class="q-label">① 배정자료 속 핵심아이디어(원문 그대로 옮겨 적기)</div>
-            <textarea class="autogrow" id="m1_material" rows="2"></textarea>
-            <a class="padlet-link" href="https://padlet.com/yeojut240006/2026-s0234ojr9y5mxbuq5aib" target="_blank" rel="noopener">📌 패들렛에서 배정 교과 국가교육과정 문서 확인하기 ↗</a>
-            <div class="q-label">② 확인 결과, 배정자료의 핵심아이디어는?</div>
-            <select id="m1_check">
-              <option value="">— 선택 —</option>
-              <option>원문 그대로</option>
-              <option>단원에 맞게 재구성됨</option>
-              <option>판단 어려움</option>
-            </select>
-            <p class="hint" style="margin:6px 0 0;">(성취기준은 원래 그대로 유지되는 것이 일반적입니다)</p>
-            <div class="q-label">점검 A. 대단원의 내용(제재·주제)과 이 핵심아이디어가 실제로 연결되어 있나요?</div>
-            <select id="m1_checkA">
-              <option value="">— 선택 —</option>
-              <option>잘 연결됨</option>
-              <option>부분적으로만 연결됨</option>
-              <option>연결 안 됨</option>
-            </select>
-            <div class="q-label">점검 B. 이 핵심아이디어가 너무 일반화·추상적인 진술이어서 학습목표와의 연계가 떨어지나요?</div>
-            <select id="m1_checkB">
-              <option value="">— 선택 —</option>
-              <option>그렇다(추상적)</option>
-              <option>아니다(구체적)</option>
-              <option>판단 어려움</option>
-            </select>
-            <div class="q-label">위 점검(A·B) 결과를 바탕으로, 재구성이 필요하다면 그 구체적인 이유는? (필요 없다면 '해당 없음')</div>
-            <textarea class="autogrow" id="m1_connect" rows="2"></textarea>
-            <div class="callout amber"><span>🧭</span><span><b>내 수업이라면?</b> — 내가 이 학급을 가르친다면, 이 핵심아이디어를 원문 그대로 쓸까, 다시 풀어 쓸까? 그 이유는?</span></div>
-          </div>
-        </div>
-
-        <!-- 미션 2 -->
-        <div class="card capture-unit">
-          <div class="card-head"><h3>미션 2. 평가요소·학습요소 추출하기 (빠진 과정 채우기)</h3><span class="stage">[평가 계획 준비]</span></div>
-          <div class="card-body">
-            <p class="hint">대부분의 예시자료는 이 추출 과정을 생략합니다. 성취기준·핵심아이디어와 내용요소(지식·이해 / 과정·기능 / 가치·태도)를 근거로, 평가요소를 직접 추출해보세요. 지식·이해와 과정·기능 칸은 <b>한 줄에 하나씩</b> 적어주세요 — 미션 3에서 그대로 불러와 씁니다.</p>
-            <div class="example-box">
-              <span class="ttl">💡 평가요소 작성 공식 및 예시</span>
-              평가요소 = (지식·이해에서 '알아야 할 것' + 과정·기능(때로는 가치·태도)에서 '할 수 있는 것')을 결합해 '-하기'로 씁니다.<br>
-              예) <code>[10공국1-05-02] 갈래에 따른 형상화 방법의 특성을 고려하며 작품을 수용한다.</code><br>
-              → 평가요소: 서정 갈래의 특성 이해하기 / 서정 갈래의 형상화 방법을 고려하여 작품 주체적으로 수용하기<br>
-              → 학습요소: 서정 갈래의 특성 이해 / 서정 갈래의 형상화 방법 이해 / 작품을 주체적으로 수용하는 태도<br>
-              평가요소를 잘 선정하면 '가르쳐야 할 것(학습요소)'이 자연스럽게 정해지고, 총괄평가에서 학습목표 도달 여부를 확인하는 결정적 증거로 그대로 쓰입니다.
-            </div>
-            <div class="tbl-wrap">
-              <table class="grid">
-                <thead><tr><th style="width:15%">성취기준·핵심아이디어</th><th style="width:9%">범주</th><th style="width:28%">내용 요소</th><th style="width:26%">평가요소 (내가 추출, '-하기'로)</th><th style="width:22%">학습요소</th></tr></thead>
-                <tbody>
-                  <tr>
-                    <td rowspan="3"><textarea class="autogrow" id="m2_std" rows="4" placeholder="성취기준 코드·문장"></textarea></td>
-                    <td class="cat-label">지식·이해</td>
-                    <td><textarea class="autogrow" id="m2_content_know" rows="2" placeholder="한 줄에 하나씩"></textarea></td>
-                    <td rowspan="3"><textarea class="autogrow" id="m2_evidence" rows="4" placeholder="예: 서정 갈래의 특성 이해하기"></textarea></td>
-                    <td><textarea class="autogrow" id="m2_learning_know" rows="2"></textarea></td>
-                  </tr>
-                  <tr>
-                    <td class="cat-label">과정·기능</td>
-                    <td><textarea class="autogrow" id="m2_content_do" rows="2" placeholder="한 줄에 하나씩"></textarea></td>
-                    <td><textarea class="autogrow" id="m2_learning_do" rows="2"></textarea></td>
-                  </tr>
-                  <tr>
-                    <td class="cat-label">가치·태도</td>
-                    <td><textarea class="autogrow" id="m2_content_value" rows="2"></textarea></td>
-                    <td><textarea class="autogrow" id="m2_learning_value" rows="2"></textarea></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="q-label">배정자료에 이 추출 과정(표/목록 등)이 있었나요?</div>
-            <select id="m2_hasProcess"><option value="">— 선택 —</option><option>있음</option><option>없음·생략됨</option></select>
-            <div class="callout amber"><span>🧭</span><span><b>내 수업이라면?</b> — 내가 이 평가요소를 스스로 뽑지 않고 수업했다면, 무엇을 가르쳐야 할지 몰라 나중에 끼워 맞추게 되지 않았을까?</span></div>
-          </div>
-        </div>
-
-        <!-- 미션 3 -->
-        <div class="card capture-unit">
-          <div class="card-head"><h3>미션 3. 매트릭스로 총괄평가(GRASPS) 정하기</h3><span class="stage">[평가 계획]</span></div>
-          <div class="card-body">
-            <p class="hint">미션 2의 지식·이해 내용요소를 위쪽 칸에, 과정·기능(평가방법) 내용요소를 왼쪽 칸에 놓고 교차 칸에서 후보를 비교한 뒤 총괄평가를 '결정'하세요. 헤더는 직접 입력해도 되고, 아래 버튼으로 미션 2 내용을 그대로 불러올 수도 있습니다.</p>
-            <button type="button" class="btn btn-teal btn-sm" onclick="syncMatrixFromM2()" style="margin-bottom:10px;">🔄 미션2 내용요소 불러오기</button>
-            <div id="m3MatrixWrap"></div>
-
-            <p class="hint" style="margin-top:18px;">GRASPS가 이미 작성돼 있다면 적절한지 검토하고, 적절하지 않다면 이유를 적어보세요. 없다면 위 매트릭스에서 정한 총괄평가를 바탕으로 새로 작성하세요.</p>
-            <div class="q-label">GRASPS가 이미 작성되어 있나요?</div>
-            <select id="m3_graspsExists">
-              <option value="">— 선택 —</option>
-              <option value="yes">예, 이미 작성되어 있음 → 적절성만 검토</option>
-              <option value="no">아니오, 없음 → 새로 작성</option>
-            </select>
-            <div id="m3GraspsNewWrap">
-              <p class="hint" id="m3GraspsHint" style="margin-top:10px;">위 매트릭스에서 정한 총괄평가를 바탕으로 GRASPS를 새로 작성하세요.</p>
-              <div class="grasps-grid" id="m3GraspsGrid">
-                <div class="grasps-cell"><label>G 목표</label><textarea class="autogrow" id="m3_g" rows="2"></textarea></div>
-                <div class="grasps-cell"><label>R 역할</label><textarea class="autogrow" id="m3_r" rows="2"></textarea></div>
-                <div class="grasps-cell"><label>A 청중</label><textarea class="autogrow" id="m3_a" rows="2"></textarea></div>
-                <div class="grasps-cell"><label>S 상황</label><textarea class="autogrow" id="m3_s1" rows="2"></textarea></div>
-                <div class="grasps-cell"><label>P 결과물</label><textarea class="autogrow" id="m3_p" rows="2"></textarea></div>
-                <div class="grasps-cell"><label>S 기준</label><textarea class="autogrow" id="m3_s2" rows="2"></textarea></div>
-              </div>
-            </div>
-            <div class="q-label" id="m3GraspsReasonLabel">GRASPS가 적절/부적절하다고 판단한 이유</div>
-            <textarea class="autogrow" id="m3_graspsReason" rows="2"></textarea>
-            <div class="q-label">이 총괄평가, 삶의 새로운 맥락에도 적용(전이)되나요?</div>
-            <select id="m3_transfer"><option value="">— 선택 —</option><option>전이 가능</option><option>교실 안에서만 통함</option></select>
-            <div class="q-label">그렇게 판단한 이유는?</div>
-            <textarea class="autogrow" id="m3_transferReason" rows="2"></textarea>
-            <div class="callout amber"><span>🧭</span><span><b>내 수업이라면?</b> — 내가 이 매트릭스 없이 총괄평가를 정했다면, 지금 이 평가가 최선이라고 자신 있게 말할 수 있었을까?</span></div>
-          </div>
-        </div>
-
-        <!-- 미션 4 -->
-        <div class="card capture-unit">
-          <div class="card-head"><h3>미션 4. 차시별 수업안, 학습요소·평가요소가 다 담겼나?</h3><span class="stage">[수업 계획]</span></div>
-          <div class="card-body">
-            <p class="hint">왼쪽 칸에는 미션 2에서 정리한 평가요소·학습요소를 그대로 옮겨 적으세요(아래 버튼으로 자동 반영 가능). 빈칸으로 남는 요소가 있다면, 그 요소는 차시에 반영되지 않은 것입니다.</p>
-            <button type="button" class="btn btn-teal btn-sm" onclick="syncM4FromM2()" style="margin-bottom:10px;">🔄 미션2 평가요소·학습요소 불러오기</button>
-            <div class="tbl-wrap">
-              <table class="grid">
-                <thead><tr><th style="width:50%">학습요소·평가요소 (미션 2에서 옮겨 적기)</th><th style="width:44%">등장하는 차시(번호) — 없으면 공란</th><th style="width:50px"></th></tr></thead>
-                <tbody id="m4Body"></tbody>
-              </table>
-            </div>
-            <button class="btn btn-ghost add-row-btn" onclick="addM4Row()">+ 행 추가</button>
-            <div class="callout amber"><span>🧭</span><span><b>내 수업이라면?</b> — 내가 짠 차시 계획에 빈칸으로 남는 요소가 있다면, 나는 그것을 어느 차시에 넣을 것인가?</span></div>
-          </div>
-        </div>
-
-        <!-- 미션 5 -->
-        <div class="card capture-unit">
-          <div class="card-head"><h3>미션 5. 수업 실행과 평가연계·피드백</h3><span class="stage">[차시별 수업·평가]</span></div>
-          <div class="card-body">
-            <p class="hint">배정 자료를 살펴보고, <b>진단·형성평가가 나와 있는 차시만</b> 골라 하나씩 적은 뒤, 그 평가 방법과 피드백 방법을 옆 칸에 채워보세요. (모든 차시를 다 적을 필요는 없습니다)</p>
-            <div class="tbl-wrap">
-              <table class="grid">
-                <thead><tr><th style="width:14%">차시</th><th style="width:40%">진단·형성평가 방법</th><th style="width:40%">학생에게 피드백을 주는 구체적 방법</th><th style="width:50px"></th></tr></thead>
-                <tbody id="m5Body"></tbody>
-              </table>
-            </div>
-            <button class="btn btn-ghost add-row-btn" onclick="addM5Row()">+ 행 추가</button>
-            <div class="callout amber"><span>🧭</span><span><b>내 수업이라면?</b> — 내가 피드백 계획 없이 이 수업을 했다면, 학생은 자신이 무엇을 더 채워야 하는지 어떻게 알 수 있었을까?</span></div>
-          </div>
-        </div>
-
-        <!-- 미션 6 -->
-        <div class="card capture-unit">
-          <div class="card-head"><h3>미션 6. 성찰과 선순환, 공동주도성으로 이어지나?</h3><span class="stage">[단원평가·다음 설계]</span></div>
-          <div class="card-body">
-            <p class="hint">환류 계획과 학생 자기점검 활동이 배정자료에 있는지 확인하고, 없다면 어느 단계(위 6단계표 참고)에서 마련하면 좋을지 적어보세요.</p>
-            <div class="tbl-wrap">
-              <table class="grid">
-                <thead><tr><th style="width:28%">확인 항목</th><th style="width:14%">있음/없음</th><th style="width:58%">있다면 내용 · 없다면 어느 단계에서 필요할지</th></tr></thead>
-                <tbody>
-                  <tr>
-                    <td class="cat-label" style="text-align:left;">단원평가 결과를 다음 설계에<br>반영하는 계획 (환류)</td>
-                    <td><select id="m6_flowStatus"><option value="">—</option><option>있음</option><option>없음</option></select></td>
-                    <td><textarea class="autogrow" id="m6_flowDetail" rows="2"></textarea></td>
-                  </tr>
-                  <tr>
-                    <td class="cat-label" style="text-align:left;">학생이 스스로 점검·조정하는<br>활동 (공동주도성)</td>
-                    <td><select id="m6_selfStatus"><option value="">—</option><option>있음</option><option>없음</option></select></td>
-                    <td><textarea class="autogrow" id="m6_selfDetail" rows="2"></textarea></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="q-label">교사·학생의 성찰이 둘 다 보이나요?</div>
-            <select id="m6_bothVisible"><option value="">— 선택 —</option><option>둘 다(공동주도성)</option><option>교사만</option><option>둘 다 없음</option></select>
-            <div class="callout amber"><span>🧭</span><span><b>내 수업이라면?</b> — 내가 환류 계획 없이 이 단원을 마쳤다면, 다음 단원에서 같은 시행착오를 반복하지 않을까?</span></div>
-          </div>
-        </div>
-
-        <!-- 마무리 -->
-        <div class="card capture-unit">
-          <div class="card-head"><h3>오늘의 발견</h3><span class="stage">[마무리]</span></div>
-          <div class="card-body">
-            <div class="q-label">오늘의 한 줄 발견 (가장 크게 다가온 성찰)</div>
-            <textarea class="autogrow" id="c_insight" rows="2"></textarea>
-            <div class="q-label">내가 정한 단원(0번)에 가장 먼저 적용하고 싶은 것</div>
-            <textarea class="autogrow" id="c_apply" rows="2"></textarea>
-          </div>
-        </div>
-
-        <details class="ref-card capture-unit appendix">
-          <summary>부록 · 참가자별 배정 자료 목록 (16명)</summary>
-          <div class="inner">
-            <div class="search-row"><input type="text" id="apSearch" placeholder="이름/학교로 찾기" oninput="filterAppendix()"></div>
-            <div class="tbl-wrap">
-              <table class="grid" id="apTable">
-                <thead><tr><th>연번</th><th>급</th><th>학교명</th><th>성명</th><th>신청교과</th><th>배정 예시자료</th></tr></thead>
-                <tbody id="apBody"></tbody>
-              </table>
-            </div>
-            <p class="appendix-note">· 서지원 선생님(진로): 기존 신청교과가 영어→진로로 변경되어 영어 예시자료 배정. / 홍선영 선생님(생명과학): 고등학교 예시자료에 없어 인접 교과 물리학으로 대체. / 양혜미 선생님(영어): 순수 '영어' 예시자료가 없어 가장 근접한 '영미 문학 읽기'로 배정.</p>
-          </div>
-        </details>
-      </section>
-
-      <section id="day2Section" style="display:none">
-        <div class="day-placeholder"><div class="icon">🗂️</div><div class="big">2일차 활동지, 준비 중입니다</div>이 자리에 2일차 학습지가 곧 추가됩니다.</div>
-      </section>
-      <section id="day3Section" style="display:none">
-        <div class="day-placeholder"><div class="icon">🗂️</div><div class="big">3일차 활동지, 준비 중입니다</div>이 자리에 3일차 학습지가 곧 추가됩니다.</div>
-      </section>
+    <div class="steps">
+      <div class="step"><span class="num">1</span><p>배정 자료<br>확인하기</p></div>
+      <div class="arrow">→</div>
+      <div class="step"><span class="num">2</span><p>6개 미션<br>차례로 작성</p></div>
+      <div class="arrow">→</div>
+      <div class="step"><span class="num">3</span><p>저장 후<br>제출하기</p></div>
     </div>
+  </div>
+
+  <div class="footer">
+    <p>오류나 개선 제안은 <a href="mailto:jb10000@korea.kr">jb10000@korea.kr</a>로 알려주세요.</p>
+    <p class="note">본 웹앱은 '교육과정-수업-평가 통합설계' 실습을 돕기 위한 도구입니다. 정확한 절차와 방법은 반드시 연수에서 제공하는 강의 교안을 따라주십시오.</p>
+    <p class="credit">2026 여주교육지원청 교육과정-수업-평가 통합설계 연수(다온 아카데미 2기) · 제작 <b>여주중 백종복</b></p>
   </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<div class="toast" id="toast">파일을 내려받았어요. 다운로드 폴더를 확인해보세요!</div>
+
 <script>
-(function(){
-  "use strict";
-
-  var PARTICIPANTS = [
-    {no:1,level:"중",school:"세종중",name:"서진영",subject:"과학",material:"중학교 과학"},
-    {no:2,level:"중",school:"세종중",name:"이성근",subject:"과학",material:"중학교 과학"},
-    {no:3,level:"중",school:"세종중",name:"이진선",subject:"사회",material:"중학교 사회"},
-    {no:4,level:"중",school:"세종중",name:"주현종",subject:"수학",material:"중학교 수학"},
-    {no:5,level:"중",school:"여주제일중",name:"서지원",subject:"진로(前 영어)",material:"중학교 영어"},
-    {no:6,level:"중",school:"여주제일중",name:"조성일",subject:"사회",material:"중학교 사회"},
-    {no:7,level:"중",school:"여주중",name:"고금비",subject:"국어",material:"중학교 국어"},
-    {no:8,level:"중",school:"여흥중",name:"김은진",subject:"영어",material:"중학교 영어"},
-    {no:9,level:"중",school:"이포중",name:"유수미",subject:"기술",material:"중학교 기술·가정"},
-    {no:10,level:"고",school:"경기관광고",name:"정준원",subject:"일본어",material:"고등학교 일본어"},
-    {no:11,level:"고",school:"경기관광고",name:"한민승",subject:"통합사회",material:"고등학교 통합사회 1"},
-    {no:12,level:"고",school:"여주제일고",name:"양혜미",subject:"영어",material:"고등학교 영미 문학 읽기"},
-    {no:13,level:"고",school:"여주제일고",name:"조아론",subject:"역사",material:"고등학교 동아시아 역사 기행"},
-    {no:14,level:"고",school:"점동고",name:"정소영",subject:"국어",material:"고등학교 공통국어 1"},
-    {no:15,level:"고",school:"점동고",name:"홍선영",subject:"과학(생명과학)",material:"고등학교 물리학 (인접교과 대체)"},
-    {no:16,level:"고",school:"점동고",name:"최민진",subject:"사회(일반사회)",material:"고등학교 현대 사회와 윤리"}
-  ];
-
-  var dirty = false;
-  var m3State = { cols: ["", ""], rows: ["", ""], cells: {} };
-
-  function $(id){ return document.getElementById(id); }
-  function val(id){ var el = $(id); return el ? el.value : ""; }
-  function setVal(id, v){ var el = $(id); if(el) el.value = v || ""; }
-
-  function pad(n){ return n<10 ? "0"+n : ""+n; }
-  function nowStr(){ var d=new Date(); return pad(d.getHours())+":"+pad(d.getMinutes()); }
-  function dateStamp(){ var d=new Date(); return d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate())+"_"+pad(d.getHours())+pad(d.getMinutes()); }
-  function escAttr(s){ return (s==null?"":s).toString().replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
-  function escHtml(s){ return (s==null?"":s).toString().replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
-
-  function autoGrow(el){ if(!el) return; el.style.height="auto"; el.style.height=(el.scrollHeight+2)+"px"; }
-  function autoGrowAll(){ document.querySelectorAll("textarea.autogrow").forEach(autoGrow); }
-
-  function setDirty(v){
-    dirty = v;
-    var dot = $("statusDot"), txt = $("statusText");
-    if(v){ dot.className="dot dirty"; txt.textContent="변경사항 있음 · 자동저장 대기"; }
-    else { dot.className="dot saved"; txt.textContent="저장됨 · "+nowStr(); }
-  }
-
-  // ---------- 참가자 콤보박스 ----------
-  function buildParticipantSelect(){
-    var sel = $("participantSelect");
-    var manualOpt = document.createElement("option");
-    manualOpt.value = "manual";
-    manualOpt.textContent = "✍️ 직접 입력 (청강생 등, 명단에 없음)";
-    sel.appendChild(manualOpt);
-    PARTICIPANTS.forEach(function(p, i){
-      var opt = document.createElement("option");
-      opt.value = i;
-      opt.textContent = p.name + " (" + p.school + " · " + p.subject + ")";
-      sel.appendChild(opt);
-    });
-    sel.addEventListener("change", function(){
-      if(sel.value === "") return;
-      if(sel.value === "manual"){
-        setVal("metaSchool",""); setVal("metaName",""); setVal("metaSubject",""); setVal("metaMaterial","");
-        syncMetaStrip();
-        setDirty(true);
-        var nameEl = $("metaName");
-        if(nameEl) nameEl.focus();
-        return;
-      }
-      var p = PARTICIPANTS[+sel.value];
-      setVal("metaSchool", p.school);
-      setVal("metaName", p.name);
-      setVal("metaSubject", p.subject);
-      setVal("metaMaterial", p.material);
-      syncMetaStrip();
-      setDirty(true);
-    });
-  }
-
-  function syncMetaStrip(){
-    $("ms_school").textContent = val("metaSchool") || "—";
-    $("ms_name").textContent = val("metaName") || "—";
-    $("ms_subject").textContent = val("metaSubject") || "—";
-    $("ms_material").textContent = val("metaMaterial") || "—";
-  }
-  ["metaSchool","metaName","metaSubject","metaMaterial"].forEach(function(id){
-    document.addEventListener("DOMContentLoaded", function(){
-      var el = $(id);
-      if(el) el.addEventListener("input", syncMetaStrip);
-    });
+  document.getElementById('downloadBtn').addEventListener('click', function(){
+    var t = document.getElementById('toast');
+    t.classList.add('show');
+    setTimeout(function(){ t.classList.remove('show'); }, 3000);
   });
-
-  // ---------- 부록 표 ----------
-  function buildAppendix(){
-    var body = $("apBody");
-    body.innerHTML = "";
-    PARTICIPANTS.forEach(function(p){
-      var tr = document.createElement("tr");
-      tr.innerHTML = "<td>"+p.no+"</td><td>"+p.level+"</td><td>"+p.school+"</td><td>"+p.name+"</td><td>"+p.subject+"</td><td>"+p.material+"</td>";
-      body.appendChild(tr);
-    });
-  }
-  window.filterAppendix = function(){
-    var q = val("apSearch").trim();
-    $("apBody").querySelectorAll("tr").forEach(function(tr){
-      tr.style.display = tr.textContent.indexOf(q) > -1 ? "" : "none";
-    });
-  };
-
-  // ---------- 동적 표 공통 ----------
-  window.removeRow = function(btn){ btn.closest("tr").remove(); setDirty(true); };
-
-  function collectRows(tbodyId, fields){
-    var out = [];
-    $(tbodyId).querySelectorAll("tr").forEach(function(tr){
-      var row = {};
-      fields.forEach(function(f){
-        var el = tr.querySelector('[data-f="'+f+'"]');
-        row[f] = el ? el.value : "";
-      });
-      out.push(row);
-    });
-    return out;
-  }
-  function populateRows(tbodyId, addFn, rows){
-    $(tbodyId).innerHTML = "";
-    if(!rows || !rows.length){ addFn(); addFn(); return; }
-    rows.forEach(function(r){ addFn(r); });
-  }
-
-  // ---------- 미션4 표 ----------
-  window.addM4Row = function(data){
-    data = data || {};
-    var tr = document.createElement("tr");
-    tr.innerHTML =
-      '<td><textarea class="autogrow" data-f="elem" rows="1"></textarea></td>'+
-      '<td><textarea class="autogrow" data-f="lessons" rows="1"></textarea></td>'+
-      '<td class="row-actions"><button class="btn-danger-ghost" onclick="removeRow(this)">삭제</button></td>';
-    $("m4Body").appendChild(tr);
-    tr.querySelector('[data-f="elem"]').value = data.elem || "";
-    tr.querySelector('[data-f="lessons"]').value = data.lessons || "";
-    tr.querySelectorAll("textarea").forEach(autoGrow);
-  };
-
-  window.syncM4FromM2 = function(){
-    var items = [];
-    var ev = (val("m2_evidence")||"").split(/\n|\//).map(function(s){ return s.trim(); }).filter(Boolean);
-    ev.forEach(function(e){ items.push(e); });
-    [val("m2_learning_know"), val("m2_learning_do"), val("m2_learning_value")].forEach(function(l){
-      l = (l||"").trim(); if(l) items.push(l);
-    });
-    if(!items.length){ alert("먼저 미션2의 평가요소·학습요소를 입력하세요."); return; }
-    if(!confirm("현재 표 내용을 미션2 내용으로 새로 채웁니다. 계속할까요?")) return;
-    $("m4Body").innerHTML = "";
-    items.forEach(function(it){ window.addM4Row({ elem: it, lessons: "" }); });
-    setDirty(true);
-  };
-
-  // ---------- 미션5 표 ----------
-  window.addM5Row = function(data){
-    data = data || {};
-    var tr = document.createElement("tr");
-    tr.innerHTML =
-      '<td><input type="text" data-f="lesson"></td>'+
-      '<td><textarea class="autogrow" data-f="assess" rows="1"></textarea></td>'+
-      '<td><textarea class="autogrow" data-f="feedback" rows="1"></textarea></td>'+
-      '<td class="row-actions"><button class="btn-danger-ghost" onclick="removeRow(this)">삭제</button></td>';
-    $("m5Body").appendChild(tr);
-    tr.querySelector('[data-f="lesson"]').value = data.lesson || "";
-    tr.querySelector('[data-f="assess"]').value = data.assess || "";
-    tr.querySelector('[data-f="feedback"]').value = data.feedback || "";
-    tr.querySelectorAll("textarea").forEach(autoGrow);
-  };
-
-  // ---------- 미션3 매트릭스 ----------
-  function renderMatrix(){
-    var wrap = $("m3MatrixWrap");
-    var cols = m3State.cols, rows = m3State.rows, cells = m3State.cells;
-    var html = '<div class="tbl-wrap"><table class="grid matrix-table"><thead><tr><th class="corner">평가방법 ＼ 내용요소<br>(지식·이해)</th>';
-    cols.forEach(function(c, ci){
-      html += '<th><div class="head-cell"><input class="col-head" data-ci="'+ci+'" value="'+escAttr(c)+'"><button type="button" class="mini-x" data-role="rmcol" data-ci="'+ci+'">×</button></div></th>';
-    });
-    html += '<th style="width:1%"><button type="button" class="btn btn-ghost btn-sm mini-add" data-role="addcol">+열</button></th></tr></thead><tbody>';
-    rows.forEach(function(r, ri){
-      html += '<tr><th><div class="head-cell"><input class="row-head" data-ri="'+ri+'" value="'+escAttr(r)+'"><button type="button" class="mini-x" data-role="rmrow" data-ri="'+ri+'">×</button></div></th>';
-      cols.forEach(function(c, ci){
-        var key = ri+"_"+ci;
-        html += '<td><textarea class="autogrow cell" data-key="'+key+'" rows="1">'+escHtml(cells[key]||"")+'</textarea></td>';
-      });
-      html += '<td></td></tr>';
-    });
-    html += '<tr><th><button type="button" class="btn btn-ghost btn-sm mini-add" data-role="addrow">+행</button></th>';
-    cols.forEach(function(){ html += '<td></td>'; });
-    html += '<td></td></tr></tbody></table></div>';
-    wrap.innerHTML = html;
-    wrap.querySelectorAll("textarea.autogrow").forEach(autoGrow);
-  }
-
-  function reindexAfterColRemove(ci){
-    var newCells = {};
-    Object.keys(m3State.cells).forEach(function(key){
-      var parts = key.split("_"); var r = +parts[0], c = +parts[1];
-      if(c === ci) return;
-      var nc = c > ci ? c - 1 : c;
-      newCells[r+"_"+nc] = m3State.cells[key];
-    });
-    m3State.cells = newCells;
-  }
-  function reindexAfterRowRemove(ri){
-    var newCells = {};
-    Object.keys(m3State.cells).forEach(function(key){
-      var parts = key.split("_"); var r = +parts[0], c = +parts[1];
-      if(r === ri) return;
-      var nr = r > ri ? r - 1 : r;
-      newCells[nr+"_"+c] = m3State.cells[key];
-    });
-    m3State.cells = newCells;
-  }
-
-  document.addEventListener("DOMContentLoaded", function(){
-    var wrap = $("m3MatrixWrap");
-    wrap.addEventListener("input", function(e){
-      if(e.target.classList.contains("col-head")){ m3State.cols[+e.target.dataset.ci] = e.target.value; setDirty(true); }
-      else if(e.target.classList.contains("row-head")){ m3State.rows[+e.target.dataset.ri] = e.target.value; setDirty(true); }
-      else if(e.target.classList.contains("cell")){
-        m3State.cells[e.target.dataset.key] = e.target.value;
-        if(e.target.classList.contains("autogrow")) autoGrow(e.target);
-        setDirty(true);
-      }
-    });
-    wrap.addEventListener("click", function(e){
-      var btn = e.target.closest("button[data-role]");
-      if(!btn) return;
-      var role = btn.dataset.role;
-      if(role === "addcol"){ m3State.cols.push(""); renderMatrix(); }
-      else if(role === "addrow"){ m3State.rows.push(""); renderMatrix(); }
-      else if(role === "rmcol"){
-        var ci = +btn.dataset.ci;
-        if(m3State.cols.length <= 1){ alert("열이 최소 1개는 있어야 합니다."); return; }
-        m3State.cols.splice(ci, 1); reindexAfterColRemove(ci); renderMatrix();
-      } else if(role === "rmrow"){
-        var ri = +btn.dataset.ri;
-        if(m3State.rows.length <= 1){ alert("행이 최소 1개는 있어야 합니다."); return; }
-        m3State.rows.splice(ri, 1); reindexAfterRowRemove(ri); renderMatrix();
-      }
-      setDirty(true);
-    });
-    renderMatrix();
-  });
-
-  function splitItems(str){
-    return (str||"").split(/[\n,，、·]+/).map(function(s){ return s.trim(); }).filter(Boolean);
-  }
-
-  window.syncMatrixFromM2 = function(){
-    var know = splitItems(val("m2_content_know"));
-    var doo = splitItems(val("m2_content_do"));
-    if(!know.length && !doo.length){ alert("먼저 미션2의 내용요소(지식·이해 / 과정·기능)를 입력하세요."); return; }
-    if(!confirm("현재 매트릭스 내용을 미션2 내용요소로 새로 채웁니다(내용요소×과정·기능 각 항목을 줄바꿈 또는 쉼표로 구분해 개별 항목으로 인식합니다). 계속할까요?")) return;
-    m3State.cols = know.length ? know.slice() : [""];
-    m3State.rows = doo.length ? doo.slice() : [""];
-    m3State.cells = {};
-    m3State.rows.forEach(function(r, ri){
-      m3State.cols.forEach(function(c, ci){
-        if(r && c) m3State.cells[ri+"_"+ci] = c + " " + r;
-      });
-    });
-    renderMatrix();
-    setDirty(true);
-  };
-
-  // ---------- 상태 수집/적용 ----------
-  function collectState(){
-    return {
-      version: 2,
-      savedAt: new Date().toISOString(),
-      unit0: { subjectGrade: val("u0_subjectGrade"), schedule: val("u0_schedule"), unitName: val("u0_unitName"), totalLessons: val("u0_totalLessons"), myTitle: val("u0_myTitle") },
-      meta: { school: val("metaSchool"), name: val("metaName"), subject: val("metaSubject"), material: val("metaMaterial"), participantIdx: val("participantSelect") },
-      m1: { material: val("m1_material"), check: val("m1_check"), checkA: val("m1_checkA"), checkB: val("m1_checkB"), connect: val("m1_connect") },
-      m2: {
-        std: val("m2_std"),
-        content: { know: val("m2_content_know"), doo: val("m2_content_do"), value: val("m2_content_value") },
-        evidence: val("m2_evidence"),
-        learning: { know: val("m2_learning_know"), doo: val("m2_learning_do"), value: val("m2_learning_value") },
-        hasProcess: val("m2_hasProcess")
-      },
-      m3: {
-        matrix: { cols: m3State.cols, rows: m3State.rows, cells: m3State.cells },
-        graspsExists: val("m3_graspsExists"),
-        grasps: { g: val("m3_g"), r: val("m3_r"), a: val("m3_a"), s1: val("m3_s1"), p: val("m3_p"), s2: val("m3_s2") },
-        graspsReason: val("m3_graspsReason"),
-        transfer: val("m3_transfer"),
-        transferReason: val("m3_transferReason")
-      },
-      m4: { rows: collectRows("m4Body", ["elem","lessons"]) },
-      m5: { rows: collectRows("m5Body", ["lesson","assess","feedback"]) },
-      m6: { flowStatus: val("m6_flowStatus"), flowDetail: val("m6_flowDetail"), selfStatus: val("m6_selfStatus"), selfDetail: val("m6_selfDetail"), bothVisible: val("m6_bothVisible") },
-      closing: { insight: val("c_insight"), apply: val("c_apply") }
-    };
-  }
-
-  function applyState(data){
-    if(!data) return;
-    if(data.unit0){
-      setVal("u0_subjectGrade", data.unit0.subjectGrade); setVal("u0_schedule", data.unit0.schedule);
-      setVal("u0_unitName", data.unit0.unitName); setVal("u0_totalLessons", data.unit0.totalLessons);
-      setVal("u0_myTitle", data.unit0.myTitle);
-    }
-    if(data.meta){
-      setVal("metaSchool", data.meta.school); setVal("metaName", data.meta.name);
-      setVal("metaSubject", data.meta.subject); setVal("metaMaterial", data.meta.material);
-      setVal("participantSelect", data.meta.participantIdx);
-    }
-    if(data.m1){ setVal("m1_material", data.m1.material); setVal("m1_check", data.m1.check); setVal("m1_checkA", data.m1.checkA); setVal("m1_checkB", data.m1.checkB); setVal("m1_connect", data.m1.connect); }
-    if(data.m2){
-      setVal("m2_std", data.m2.std);
-      var c = data.m2.content || {}; setVal("m2_content_know", c.know); setVal("m2_content_do", c.doo); setVal("m2_content_value", c.value);
-      setVal("m2_evidence", data.m2.evidence);
-      var l = data.m2.learning || {}; setVal("m2_learning_know", l.know); setVal("m2_learning_do", l.doo); setVal("m2_learning_value", l.value);
-      setVal("m2_hasProcess", data.m2.hasProcess);
-    }
-    if(data.m3){
-      var mx = data.m3.matrix || {};
-      m3State.cols = (mx.cols && mx.cols.length) ? mx.cols.slice() : ["",""];
-      m3State.rows = (mx.rows && mx.rows.length) ? mx.rows.slice() : ["",""];
-      m3State.cells = mx.cells || {};
-      renderMatrix();
-      var g = data.m3.grasps || {};
-      setVal("m3_g", g.g); setVal("m3_r", g.r); setVal("m3_a", g.a); setVal("m3_s1", g.s1); setVal("m3_p", g.p); setVal("m3_s2", g.s2);
-      setVal("m3_graspsExists", data.m3.graspsExists);
-      setVal("m3_graspsReason", data.m3.graspsReason);
-      setVal("m3_transfer", data.m3.transfer);
-      setVal("m3_transferReason", data.m3.transferReason);
-      updateGraspsUI();
-    }
-    populateRows("m4Body", window.addM4Row, data.m4 && data.m4.rows);
-    populateRows("m5Body", window.addM5Row, data.m5 && data.m5.rows);
-    if(data.m6){
-      setVal("m6_flowStatus", data.m6.flowStatus); setVal("m6_flowDetail", data.m6.flowDetail);
-      setVal("m6_selfStatus", data.m6.selfStatus); setVal("m6_selfDetail", data.m6.selfDetail);
-      setVal("m6_bothVisible", data.m6.bothVisible);
-    }
-    if(data.closing){ setVal("c_insight", data.closing.insight); setVal("c_apply", data.closing.apply); }
-    syncMetaStrip();
-    autoGrowAll();
-  }
-
-  function fileSafeName(){
-    var n = val("metaName").trim();
-    return (n ? n : "무기명").replace(/[\\/:*?"<>|]/g,"_");
-  }
-
-  // ---------- 파일 저장 (Artifact 보기: downloads capability / 일반 브라우저: 다운로드 앵커) ----------
-  async function saveFile(filename, content, mime){
-    var blob = (content instanceof Blob) ? content : new Blob([content], {type: mime});
-    if (window.claude && typeof window.claude.use === "function"){
-      var downloads = null;
-      try{ downloads = await window.claude.use("downloads"); }catch(e){ downloads = null; }
-      if (downloads){
-        try{
-          await downloads.save({filename: filename, data: blob});
-          return "saved";
-        }catch(err){
-          if (err && err.code === "declined") return "declined";
-          console.warn("downloads.save error", err);
-          alert("파일 저장에 실패했습니다 (" + (err && err.code ? err.code : "오류") + ").");
-          return "error";
-        }
-      }
-    }
-    try{
-      var url = URL.createObjectURL(blob);
-      var a = document.createElement("a");
-      a.href = url; a.download = filename;
-      document.body.appendChild(a); a.click(); document.body.removeChild(a);
-      setTimeout(function(){ URL.revokeObjectURL(url); }, 4000);
-      return "saved";
-    }catch(e){
-      console.error(e);
-      alert("파일 저장에 실패했습니다.");
-      return "error";
-    }
-  }
-
-  window.saveJSON = async function(isAuto){
-    var data = collectState();
-    var json = JSON.stringify(data, null, 2);
-    var filename = (isAuto ? "1일차활동지_자동저장_" : "1일차활동지_") + fileSafeName() + "_" + dateStamp() + ".json";
-    var result = await saveFile(filename, json, "application/json");
-    if(result === "saved"){
-      setDirty(false);
-      if(isAuto) $("statusText").textContent = "자동저장됨 · " + nowStr();
-    }
-  };
-
-  document.addEventListener("DOMContentLoaded", function(){
-    $("loadInput").addEventListener("change", function(e){
-      var file = e.target.files[0];
-      if(!file) return;
-      var reader = new FileReader();
-      reader.onload = function(ev){
-        try{
-          var data = JSON.parse(ev.target.result);
-          applyState(data);
-          setDirty(false);
-          alert("불러오기 완료: " + file.name);
-        }catch(err){
-          alert("파일을 읽는 중 문제가 발생했습니다. JSON 형식을 확인해주세요.");
-        }
-      };
-      reader.readAsText(file, "utf-8");
-    });
-  });
-
-  // ---------- 자동저장 ----------
-  setInterval(function(){
-    if(dirty && $("autosaveToggle").checked){ window.saveJSON(true); }
-  }, 300000);
-
-  window.addEventListener("beforeunload", function(e){
-    if(dirty){ e.preventDefault(); e.returnValue = ""; }
-  });
-
-  // ---------- 일차 탭 ----------
-  function switchDay(day){
-    document.querySelectorAll(".day-tab").forEach(function(t){ t.classList.toggle("active", t.dataset.day===day); });
-    ["day1Section","day2Section","day3Section"].forEach(function(id){
-      $(id).style.display = (id === day+"Section") ? "" : "none";
-    });
-  }
-  document.addEventListener("DOMContentLoaded", function(){
-    document.querySelectorAll(".day-tab").forEach(function(t){
-      t.addEventListener("click", function(){ switchDay(t.dataset.day); });
-    });
-  });
-
-  // ---------- PDF 내보내기 ----------
-  function cloneFixer(clonedDoc, clonedEl){
-    clonedEl.querySelectorAll("textarea").forEach(function(ta){
-      var div = clonedDoc.createElement("div");
-      div.textContent = ta.value || "";
-      div.style.cssText = "white-space:pre-wrap;font:inherit;color:inherit;padding:5px;min-height:"+Math.max(ta.offsetHeight,20)+"px;";
-      ta.parentNode.replaceChild(div, ta);
-    });
-    clonedEl.querySelectorAll("select").forEach(function(sel){
-      var div = clonedDoc.createElement("div");
-      div.textContent = (sel.selectedIndex>=0 && sel.options[sel.selectedIndex]) ? sel.options[sel.selectedIndex].text : "";
-      div.style.cssText = "font:inherit;color:inherit;padding:5px;";
-      sel.parentNode.replaceChild(div, sel);
-    });
-    clonedEl.querySelectorAll('input[type="text"]').forEach(function(inp){
-      var div = clonedDoc.createElement("div");
-      div.textContent = inp.value || "";
-      div.style.cssText = "font:inherit;color:inherit;padding:5px;";
-      inp.parentNode.replaceChild(div, inp);
-    });
-  }
-
-  window.downloadPDF = async function(){
-    var btn = event.target;
-    var oldText = btn.textContent; btn.textContent = "생성 중...";
-    try{
-      var jsPDFCtor = window.jspdf.jsPDF;
-      var pdf = new jsPDFCtor("p","mm","a4");
-      var pageW = 210, pageH = 297, margin = 10;
-      var usableW = pageW - margin*2;
-      var cursorY = margin, started = false;
-      var units = Array.prototype.slice.call(document.querySelectorAll("#day1Section .capture-unit"));
-
-      for(var i=0; i<units.length; i++){
-        var canvas = await html2canvas(units[i], {scale:2, backgroundColor:"#ffffff", onclone:cloneFixer});
-        var imgW = usableW;
-        var imgH = canvas.height * imgW / canvas.width;
-        var maxH = pageH - margin*2;
-        if(imgH > maxH){
-          var pxPerPage = maxH * canvas.width / imgW;
-          var remaining = canvas.height, offset = 0;
-          while(remaining > 0){
-            var sliceH = Math.min(pxPerPage, remaining);
-            var c2 = document.createElement("canvas");
-            c2.width = canvas.width; c2.height = sliceH;
-            c2.getContext("2d").drawImage(canvas, 0, offset, canvas.width, sliceH, 0, 0, canvas.width, sliceH);
-            if(started) pdf.addPage();
-            started = true;
-            pdf.addImage(c2.toDataURL("image/png"), "PNG", margin, margin, imgW, sliceH*imgW/canvas.width);
-            remaining -= sliceH; offset += sliceH;
-          }
-          cursorY = pageH;
-        } else {
-          if(started && cursorY + imgH > pageH - margin){ pdf.addPage(); cursorY = margin; }
-          started = true;
-          pdf.addImage(canvas.toDataURL("image/png"), "PNG", margin, cursorY, imgW, imgH);
-          cursorY += imgH + 5;
-        }
-      }
-      var blob = pdf.output("blob");
-      await saveFile("1일차활동지_"+fileSafeName()+".pdf", blob, "application/pdf");
-    }catch(err){
-      console.error(err);
-      alert("PDF 생성 중 문제가 발생했습니다.");
-    }finally{
-      btn.textContent = oldText;
-    }
-  };
-
-  // ---------- Word(.docx) 내보내기 : JSZip으로 최소 OOXML 문서 직접 조립 ----------
-  var DOCX_FULL_W = 9072; // A4 폭(11906) - 좌우 여백(1417*2), dxa 단위
-  function xesc(s){ return (s==null?"":s).toString().replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
-  function evenCols(n, total){
-    total = total || DOCX_FULL_W;
-    var base = Math.floor(total / n);
-    var widths = new Array(n).fill(base);
-    widths[n - 1] = total - base * (n - 1); // 나머지는 마지막 칸에 몰아서 합이 total과 정확히 일치하도록
-    return widths;
-  }
-
-  function wPara(text, opts){
-    opts = opts || {};
-    var pPrParts = [];
-    if(opts.fill) pPrParts.push('<w:shd w:val="clear" w:fill="'+opts.fill+'"/>');
-    if(opts.spacingAfter != null) pPrParts.push('<w:spacing w:after="'+opts.spacingAfter+'"/>');
-    var pPr = pPrParts.length ? '<w:pPr>'+pPrParts.join("")+'</w:pPr>' : '';
-    var rPrParts = [];
-    if(opts.bold) rPrParts.push('<w:b/>');
-    if(opts.italic) rPrParts.push('<w:i/>');
-    if(opts.color) rPrParts.push('<w:color w:val="'+opts.color+'"/>');
-    if(opts.size) rPrParts.push('<w:sz w:val="'+(opts.size*2)+'"/>');
-    var rPr = rPrParts.length ? '<w:rPr>'+rPrParts.join("")+'</w:rPr>' : '';
-    var lines = xesc(text).split("\n");
-    if(lines.length === 1 && lines[0] === "") lines = [" "];
-    var runs = lines.map(function(l){ return '<w:r>'+rPr+'<w:t xml:space="preserve">'+(l||" ")+'</w:t></w:r>'; }).join('<w:r><w:br/></w:r>');
-    return '<w:p>'+pPr+runs+'</w:p>';
-  }
-  function wCell(text, opts){
-    opts = opts || {};
-    var shd = opts.fill ? '<w:shd w:val="clear" w:fill="'+opts.fill+'"/>' : '';
-    var tcW = opts.width != null ? '<w:tcW w:w="'+opts.width+'" w:type="dxa"/>' : '<w:tcW w:w="0" w:type="auto"/>';
-    return '<w:tc><w:tcPr>'+tcW+shd+'</w:tcPr>'+wPara(text, {bold:opts.bold, color:opts.color})+'</w:tc>';
-  }
-  function wRow(cells){ return '<w:tr>'+cells.join("")+'</w:tr>'; }
-  function wTable(rows, colWidths){
-    var borders = ['top','left','bottom','right','insideH','insideV'].map(function(s){ return '<w:'+s+' w:val="single" w:sz="4" w:color="D3E2E0"/>'; }).join("");
-    var totalW = colWidths ? colWidths.reduce(function(a,b){ return a+b; }, 0) : 0;
-    var tblWAttr = colWidths ? '<w:tblW w:w="'+totalW+'" w:type="dxa"/>' : '<w:tblW w:w="0" w:type="auto"/>';
-    var grid = colWidths ? '<w:tblGrid>'+colWidths.map(function(w){ return '<w:gridCol w:w="'+w+'"/>'; }).join("")+'</w:tblGrid>' : '';
-    return '<w:tbl><w:tblPr>'+tblWAttr+'<w:tblBorders>'+borders+'</w:tblBorders></w:tblPr>'+grid+rows.join("")+'</w:tbl>';
-  }
-  // headers/rows로 표를 만들 때 각 열에 명시적 폭(dxa)을 부여 — colWidths 생략 시 균등분배(전체폭/열수)
-  function wDataTable(headers, rows, colWidths){
-    colWidths = colWidths || evenCols(headers.length);
-    var head = wRow(headers.map(function(h, i){ return wCell(h, {bold:true, fill:"E8F1F1", width:colWidths[i]}); }));
-    var body = (rows && rows.length ? rows : [headers.map(function(){ return ""; })])
-      .map(function(r){ return wRow(r.map(function(v, i){ return wCell(v, {width:colWidths[i]}); })); });
-    return wTable([head].concat(body), colWidths);
-  }
-  // 라벨(고정폭)|값(나머지폭) 2열 표 — 소속/성명 등 정보 테이블에 사용
-  function wLabelValueTable(pairs, labelWidth){
-    labelWidth = labelWidth || 2000;
-    var valueWidth = DOCX_FULL_W - labelWidth;
-    var rows = pairs.map(function(p){
-      return wRow([wCell(p[0], {bold:true, fill:"E8F1F1", width:labelWidth}), wCell(p[1], {width:valueWidth})]);
-    });
-    return wTable(rows, [labelWidth, valueWidth]);
-  }
-  function wBanner(title){ return wPara(title, {fill:"1F5C5C", bold:true, color:"FFFFFF", size:13, spacingAfter:80}); }
-  function wTealBanner(title){ return wPara(title, {fill:"2E8B8B", bold:true, color:"FFFFFF", size:13, spacingAfter:80}); }
-
-  function buildDocxXml(d){
-    var body = "";
-    body += wPara("교육과정-수업-평가 통합설계 사례 분석하기", {bold:true, size:22, color:"1F5C5C", spacingAfter:40});
-    body += wPara("교과별 장학자료 설계 사례 분석 활동지 · 2026 여주 교육과정-수업-평가 통합설계 직무연수(다온 아카데미 2기) · 1회차 2교시", {size:10, spacingAfter:200});
-
-    body += wTealBanner("0. 나의 단원 설계, 출발점 잡기");
-    body += wDataTable(["교과/학년(군)","수업 예정 시기","단원명","총 차시 수","내가 붙이는 제목"], [[d.unit0.subjectGrade, d.unit0.schedule, d.unit0.unitName, d.unit0.totalLessons, d.unit0.myTitle]]);
-    body += wPara("", {spacingAfter:160});
-
-    body += wLabelValueTable([
-      ["소속(학교)", d.meta.school],
-      ["성명", d.meta.name],
-      ["배정 교과", d.meta.subject],
-      ["배정 자료", d.meta.material]
-    ]);
-    body += wPara("", {spacingAfter:160});
-
-    body += wBanner("미션 1. 핵심아이디어, 국가교육과정과 비교하기  [학습목표설정]");
-    body += wPara("① 배정자료 속 핵심아이디어(원문 그대로)", {bold:true, spacingAfter:20});
-    body += wPara(d.m1.material || "(작성 없음)", {spacingAfter:120});
-    body += wPara("② 확인 결과: " + (d.m1.check || "(미선택)"), {italic:true, spacingAfter:80});
-    body += wPara("점검 A(대단원 내용과의 연결): " + (d.m1.checkA || "(미선택)") + "   /   점검 B(일반화·추상성): " + (d.m1.checkB || "(미선택)"), {italic:true, spacingAfter:80});
-    body += wPara("재구성이 필요하다면 그 이유: " + (d.m1.connect || "(작성 없음)"), {spacingAfter:220});
-
-    body += wBanner("미션 2. 평가요소·학습요소 추출하기  [평가 계획 준비]");
-    body += wPara("성취기준·핵심아이디어: " + (d.m2.std || "(작성 없음)"), {bold:true, spacingAfter:80});
-    body += wDataTable(["범주","내용요소","평가요소(공통)","학습요소"], [
-      ["지식·이해", d.m2.content.know, d.m2.evidence, d.m2.learning.know],
-      ["과정·기능", d.m2.content.doo, "", d.m2.learning.doo],
-      ["가치·태도", d.m2.content.value, "", d.m2.learning.value],
-    ]);
-    body += wPara("배정자료에 이 추출 과정이 있었나요? " + (d.m2.hasProcess || "(미선택)"), {italic:true, spacingAfter:220});
-
-    body += wBanner("미션 3. 매트릭스로 총괄평가(GRASPS) 정하기  [평가 계획]");
-    var mCols = d.m3.matrix.cols || [];
-    var mRows = d.m3.matrix.rows || [];
-    var mHeaders = ["평가방법＼내용요소"].concat(mCols);
-    var mBodyRows = mRows.map(function(r, ri){
-      return [r].concat(mCols.map(function(c, ci){ return d.m3.matrix.cells[ri+"_"+ci] || ""; }));
-    });
-    body += wDataTable(mHeaders, mBodyRows);
-    body += wPara("", {spacingAfter:80});
-    body += wDataTable(["G 목표","R 역할","A 청중"], [[d.m3.grasps.g, d.m3.grasps.r, d.m3.grasps.a]]);
-    body += wDataTable(["S 상황","P 결과물","S 기준"], [[d.m3.grasps.s1, d.m3.grasps.p, d.m3.grasps.s2]]);
-    body += wPara("GRASPS 판단 이유: " + (d.m3.graspsReason || "(작성 없음)"), {spacingAfter:80});
-    body += wPara("전이 여부: " + (d.m3.transfer || "(미선택)") + " / 이유: " + (d.m3.transferReason || "(작성 없음)"), {italic:true, spacingAfter:220});
-
-    body += wBanner("미션 4. 차시별 수업안 점검  [수업 계획]");
-    body += wDataTable(["학습요소·평가요소","등장하는 차시"], d.m4.rows.map(function(r){ return [r.elem, r.lessons]; }));
-    body += wPara("", {spacingAfter:160});
-
-    body += wBanner("미션 5. 수업 실행과 평가연계·피드백  [차시별 수업·평가]");
-    body += wDataTable(["차시","진단·형성평가 방법","피드백 방법"], d.m5.rows.map(function(r){ return [r.lesson, r.assess, r.feedback]; }));
-    body += wPara("", {spacingAfter:160});
-
-    body += wBanner("미션 6. 성찰과 선순환, 공동주도성  [단원평가·다음 설계]");
-    body += wDataTable(["확인 항목","있음/없음","내용"], [
-      ["환류 계획", d.m6.flowStatus, d.m6.flowDetail],
-      ["학생 자기점검", d.m6.selfStatus, d.m6.selfDetail],
-    ]);
-    body += wPara("교사·학생의 성찰이 둘 다 보이나요? " + (d.m6.bothVisible || "(미선택)"), {italic:true, spacingAfter:220});
-
-    body += wBanner("오늘의 발견");
-    body += wPara("오늘의 한 줄 발견", {bold:true, spacingAfter:20});
-    body += wPara(d.closing.insight || "(작성 없음)", {spacingAfter:120});
-    body += wPara("내가 정한 단원(0번)에 가장 먼저 적용하고 싶은 것", {bold:true, spacingAfter:20});
-    body += wPara(d.closing.apply || "(작성 없음)", {spacingAfter:40});
-
-    return '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'+
-      '<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">'+
-      '<w:body>'+body+
-      '<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="1417" w:right="1417" w:bottom="1417" w:left="1417"/></w:sectPr>'+
-      '</w:body></w:document>';
-  }
-
-  async function buildDocxBlob(d){
-    var zip = new JSZip();
-    zip.file("[Content_Types].xml",
-      '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'+
-      '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">'+
-      '<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>'+
-      '<Default Extension="xml" ContentType="application/xml"/>'+
-      '<Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>'+
-      '<Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/>'+
-      '<Override PartName="/word/settings.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.settings+xml"/>'+
-      '<Override PartName="/docProps/core.xml" ContentType="application/vnd.openxmlformats-package.core-properties+xml"/>'+
-      '<Override PartName="/docProps/app.xml" ContentType="application/vnd.openxmlformats-officedocument.extended-properties+xml"/>'+
-      '</Types>');
-    zip.file("_rels/.rels",
-      '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'+
-      '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'+
-      '<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/>'+
-      '<Relationship Id="rId2" Type="http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties" Target="docProps/core.xml"/>'+
-      '<Relationship Id="rId3" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/extended-properties" Target="docProps/app.xml"/>'+
-      '</Relationships>');
-    zip.file("word/_rels/document.xml.rels",
-      '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'+
-      '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'+
-      '<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/>'+
-      '<Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/settings" Target="settings.xml"/>'+
-      '</Relationships>');
-    zip.file("word/styles.xml",
-      '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'+
-      '<w:styles xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">'+
-      '<w:docDefaults><w:rPrDefault><w:rPr><w:rFonts w:ascii="맑은 고딕" w:eastAsia="맑은 고딕" w:hAnsi="맑은 고딕" w:cs="맑은 고딕"/><w:sz w:val="21"/><w:szCs w:val="21"/></w:rPr></w:rPrDefault></w:docDefaults>'+
-      '<w:style w:type="paragraph" w:default="1" w:styleId="Normal"><w:name w:val="Normal"/><w:qFormat/></w:style>'+
-      '<w:style w:type="character" w:default="1" w:styleId="DefaultParagraphFont"><w:name w:val="Default Paragraph Font"/></w:style>'+
-      '</w:styles>');
-    zip.file("word/settings.xml",
-      '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'+
-      '<w:settings xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">'+
-      '<w:defaultTabStop w:val="720"/>'+
-      '</w:settings>');
-    zip.file("docProps/core.xml",
-      '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'+
-      '<cp:coreProperties xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">'+
-      '<dc:title>'+xesc((d.unit0 && d.unit0.myTitle) || "1일차 활동지")+'</dc:title>'+
-      '<dc:creator>2026 여주 교수평통 연수</dc:creator>'+
-      '<dcterms:created xsi:type="dcterms:W3CDTF">'+new Date().toISOString()+'</dcterms:created>'+
-      '<dcterms:modified xsi:type="dcterms:W3CDTF">'+new Date().toISOString()+'</dcterms:modified>'+
-      '</cp:coreProperties>');
-    zip.file("docProps/app.xml",
-      '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'+
-      '<Properties xmlns="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties">'+
-      '<Application>Microsoft Word</Application>'+
-      '</Properties>');
-    zip.file("word/document.xml", buildDocxXml(d));
-    return await zip.generateAsync({type:"blob", mimeType:"application/vnd.openxmlformats-officedocument.wordprocessingml.document"});
-  }
-
-  window.downloadWordDoc = async function(){
-    var btn = event.target;
-    var oldText = btn.textContent; btn.textContent = "생성 중...";
-    try{
-      var d = collectState();
-      var blob = await buildDocxBlob(d);
-      await saveFile("1일차활동지_"+fileSafeName()+".docx", blob, "application/vnd.openxmlformats-officedocument.wordprocessingml.document");
-    }catch(err){
-      console.error(err);
-      alert("Word 파일 생성 중 문제가 발생했습니다.");
-    }finally{
-      btn.textContent = oldText;
-    }
-  };
-
-  // ---------- 초기화 ----------
-  function updateGraspsUI(){
-    var v = val("m3_graspsExists");
-    var wrap = $("m3GraspsNewWrap");
-    var label = $("m3GraspsReasonLabel");
-    if(!wrap || !label) return;
-    if(v === "yes"){
-      wrap.hidden = true;
-      label.textContent = "기존 GRASPS가 적절한지 검토한 결과와 그 이유 (부적절하다면 어떻게 보완할지도 적어보세요)";
-    } else if(v === "no"){
-      wrap.hidden = false;
-      label.textContent = "위에서 새로 작성한 GRASPS가 총괄평가로 적절한 이유";
-    } else {
-      wrap.hidden = false;
-      label.textContent = "GRASPS가 적절/부적절하다고 판단한 이유";
-    }
-  }
-
-  document.addEventListener("DOMContentLoaded", function(){
-    buildParticipantSelect();
-    buildAppendix();
-    populateRows("m4Body", window.addM4Row, null);
-    populateRows("m5Body", window.addM5Row, null);
-    syncMetaStrip();
-    var graspsExistsSel = $("m3_graspsExists");
-    if(graspsExistsSel) graspsExistsSel.addEventListener("change", updateGraspsUI);
-    updateGraspsUI();
-    document.getElementById("app").addEventListener("input", function(e){
-      if(e.target.classList.contains("autogrow")) autoGrow(e.target);
-      setDirty(true);
-    });
-    document.getElementById("app").addEventListener("change", function(){ setDirty(true); });
-    setDirty(false);
-    $("statusText").textContent = "작성 대기 중";
-  });
-})();
 </script>
-
 </body>
 </html>
