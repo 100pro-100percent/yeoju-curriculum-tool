@@ -67,7 +67,6 @@
   select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6'><path d='M0 0l5 6 5-6z' fill='%235B706E'/></svg>");background-repeat:no-repeat;background-position:right 10px center;padding-right:26px;cursor:pointer;}
   textarea{resize:none;overflow:hidden;min-height:46px;line-height:1.55;width:100%;}
   input:focus,textarea:focus,select:focus{outline:2px solid var(--accent-2);outline-offset:1px;border-color:var(--accent-2);}
-  #participantSelect{min-width:230px;}
   .metaField input{width:150px;}
   .toolbar{display:flex;gap:8px;margin-left:auto;flex-wrap:wrap;align-items:center;}
   .btn{font-family:var(--font-body);font-weight:700;font-size:12.5px;border-radius:8px;padding:9px 13px;border:1px solid transparent;cursor:pointer;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;background:var(--surface);}
@@ -174,7 +173,6 @@
     .content{padding:16px 16px 50px;}
     .grasps-grid{grid-template-columns:1fr;}
     .field-grid{grid-template-columns:1fr;}
-    #participantSelect{min-width:0;width:100%;}
   }
 </style>
 
@@ -195,12 +193,8 @@
 
   <div class="main">
     <div class="topbar">
-      <div class="field">
-        <label for="participantSelect">참가자 선택 (자동입력)</label>
-        <select id="participantSelect"><option value="">— 이름을 선택하면 아래 정보가 채워집니다 —</option></select>
-      </div>
       <div class="field metaField"><label for="metaSchool">소속(학교)</label><input type="text" id="metaSchool" placeholder="예: 여주중"></div>
-      <div class="field metaField"><label for="metaName">성명</label><input type="text" id="metaName" placeholder="예: 고금비"></div>
+      <div class="field metaField"><label for="metaName">성명</label><input type="text" id="metaName" placeholder="예: 홍길동"></div>
       <div class="field metaField"><label for="metaSubject">배정 교과</label><input type="text" id="metaSubject" placeholder="예: 국어"></div>
       <div class="field metaField"><label for="metaMaterial">배정 자료(급/과목)</label><input type="text" id="metaMaterial" placeholder="예: 중학교 국어"></div>
 
@@ -471,19 +465,6 @@
           </div>
         </div>
 
-        <details class="ref-card capture-unit appendix">
-          <summary>부록 · 참가자별 배정 자료 목록 (16명)</summary>
-          <div class="inner">
-            <div class="search-row"><input type="text" id="apSearch" placeholder="이름/학교로 찾기" oninput="filterAppendix()"></div>
-            <div class="tbl-wrap">
-              <table class="grid" id="apTable">
-                <thead><tr><th>연번</th><th>급</th><th>학교명</th><th>성명</th><th>신청교과</th><th>배정 예시자료</th></tr></thead>
-                <tbody id="apBody"></tbody>
-              </table>
-            </div>
-            <p class="appendix-note">· 서지원 선생님(진로): 기존 신청교과가 영어→진로로 변경되어 영어 예시자료 배정. / 홍선영 선생님(생명과학): 고등학교 예시자료에 없어 인접 교과 물리학으로 대체. / 양혜미 선생님(영어): 순수 '영어' 예시자료가 없어 가장 근접한 '영미 문학 읽기'로 배정.</p>
-          </div>
-        </details>
       </section>
 
       <section id="day2Section" style="display:none">
@@ -502,25 +483,6 @@
 <script>
 (function(){
   "use strict";
-
-  var PARTICIPANTS = [
-    {no:1,level:"중",school:"세종중",name:"서진영",subject:"과학",material:"중학교 과학"},
-    {no:2,level:"중",school:"세종중",name:"이성근",subject:"과학",material:"중학교 과학"},
-    {no:3,level:"중",school:"세종중",name:"이진선",subject:"사회",material:"중학교 사회"},
-    {no:4,level:"중",school:"세종중",name:"주현종",subject:"수학",material:"중학교 수학"},
-    {no:5,level:"중",school:"여주제일중",name:"서지원",subject:"진로(前 영어)",material:"중학교 영어"},
-    {no:6,level:"중",school:"여주제일중",name:"조성일",subject:"사회",material:"중학교 사회"},
-    {no:7,level:"중",school:"여주중",name:"고금비",subject:"국어",material:"중학교 국어"},
-    {no:8,level:"중",school:"여흥중",name:"김은진",subject:"영어",material:"중학교 영어"},
-    {no:9,level:"중",school:"이포중",name:"유수미",subject:"기술",material:"중학교 기술·가정"},
-    {no:10,level:"고",school:"경기관광고",name:"정준원",subject:"일본어",material:"고등학교 일본어"},
-    {no:11,level:"고",school:"경기관광고",name:"한민승",subject:"통합사회",material:"고등학교 통합사회 1"},
-    {no:12,level:"고",school:"여주제일고",name:"양혜미",subject:"영어",material:"고등학교 영미 문학 읽기"},
-    {no:13,level:"고",school:"여주제일고",name:"조아론",subject:"역사",material:"고등학교 동아시아 역사 기행"},
-    {no:14,level:"고",school:"점동고",name:"정소영",subject:"국어",material:"고등학교 공통국어 1"},
-    {no:15,level:"고",school:"점동고",name:"홍선영",subject:"과학(생명과학)",material:"고등학교 물리학 (인접교과 대체)"},
-    {no:16,level:"고",school:"점동고",name:"최민진",subject:"사회(일반사회)",material:"고등학교 현대 사회와 윤리"}
-  ];
 
   var dirty = false;
   var m3State = { cols: ["", ""], rows: ["", ""], cells: {} };
@@ -545,39 +507,6 @@
     else { dot.className="dot saved"; txt.textContent="저장됨 · "+nowStr(); }
   }
 
-  // ---------- 참가자 콤보박스 ----------
-  function buildParticipantSelect(){
-    var sel = $("participantSelect");
-    var manualOpt = document.createElement("option");
-    manualOpt.value = "manual";
-    manualOpt.textContent = "✍️ 직접 입력 (청강생 등, 명단에 없음)";
-    sel.appendChild(manualOpt);
-    PARTICIPANTS.forEach(function(p, i){
-      var opt = document.createElement("option");
-      opt.value = i;
-      opt.textContent = p.name + " (" + p.school + " · " + p.subject + ")";
-      sel.appendChild(opt);
-    });
-    sel.addEventListener("change", function(){
-      if(sel.value === "") return;
-      if(sel.value === "manual"){
-        setVal("metaSchool",""); setVal("metaName",""); setVal("metaSubject",""); setVal("metaMaterial","");
-        syncMetaStrip();
-        setDirty(true);
-        var nameEl = $("metaName");
-        if(nameEl) nameEl.focus();
-        return;
-      }
-      var p = PARTICIPANTS[+sel.value];
-      setVal("metaSchool", p.school);
-      setVal("metaName", p.name);
-      setVal("metaSubject", p.subject);
-      setVal("metaMaterial", p.material);
-      syncMetaStrip();
-      setDirty(true);
-    });
-  }
-
   function syncMetaStrip(){
     $("ms_school").textContent = val("metaSchool") || "—";
     $("ms_name").textContent = val("metaName") || "—";
@@ -590,23 +519,6 @@
       if(el) el.addEventListener("input", syncMetaStrip);
     });
   });
-
-  // ---------- 부록 표 ----------
-  function buildAppendix(){
-    var body = $("apBody");
-    body.innerHTML = "";
-    PARTICIPANTS.forEach(function(p){
-      var tr = document.createElement("tr");
-      tr.innerHTML = "<td>"+p.no+"</td><td>"+p.level+"</td><td>"+p.school+"</td><td>"+p.name+"</td><td>"+p.subject+"</td><td>"+p.material+"</td>";
-      body.appendChild(tr);
-    });
-  }
-  window.filterAppendix = function(){
-    var q = val("apSearch").trim();
-    $("apBody").querySelectorAll("tr").forEach(function(tr){
-      tr.style.display = tr.textContent.indexOf(q) > -1 ? "" : "none";
-    });
-  };
 
   // ---------- 동적 표 공통 ----------
   window.removeRow = function(btn){ btn.closest("tr").remove(); setDirty(true); };
@@ -776,7 +688,7 @@
       version: 2,
       savedAt: new Date().toISOString(),
       unit0: { subjectGrade: val("u0_subjectGrade"), schedule: val("u0_schedule"), unitName: val("u0_unitName"), totalLessons: val("u0_totalLessons"), myTitle: val("u0_myTitle") },
-      meta: { school: val("metaSchool"), name: val("metaName"), subject: val("metaSubject"), material: val("metaMaterial"), participantIdx: val("participantSelect") },
+      meta: { school: val("metaSchool"), name: val("metaName"), subject: val("metaSubject"), material: val("metaMaterial") },
       m1: { material: val("m1_material"), check: val("m1_check"), checkA: val("m1_checkA"), checkB: val("m1_checkB"), connect: val("m1_connect") },
       m2: {
         std: val("m2_std"),
@@ -810,7 +722,6 @@
     if(data.meta){
       setVal("metaSchool", data.meta.school); setVal("metaName", data.meta.name);
       setVal("metaSubject", data.meta.subject); setVal("metaMaterial", data.meta.material);
-      setVal("participantSelect", data.meta.participantIdx);
     }
     if(data.m1){ setVal("m1_material", data.m1.material); setVal("m1_check", data.m1.check); setVal("m1_checkA", data.m1.checkA); setVal("m1_checkB", data.m1.checkB); setVal("m1_connect", data.m1.connect); }
     if(data.m2){
@@ -1230,8 +1141,6 @@
   }
 
   document.addEventListener("DOMContentLoaded", function(){
-    buildParticipantSelect();
-    buildAppendix();
     populateRows("m4Body", window.addM4Row, null);
     populateRows("m5Body", window.addM5Row, null);
     syncMetaStrip();
