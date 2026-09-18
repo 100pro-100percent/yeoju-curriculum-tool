@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>교육과정-수업-평가 통합설계 사례 분석 워크북</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gothic+A1:wght@400;500;700;900&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    --bg:#F6F9F8; --surface:#FFFFFF; --surface-2:#E8F1F1;
+    --ink:#17302E; --ink-muted:#5B706E; --border:#D3E2E0;
+    --accent:#1F5C5C; --accent-2:#2E8B8B; --accent-ink:#FFFFFF;
+    --shadow:0 8px 28px rgba(23,48,46,.10);
+    --font-display:'Gowun Batang','Noto Serif KR',serif;
+    --font-body:'Gothic A1','Apple SD Gothic Neo',sans-serif;
+    --font-mono:'IBM Plex Mono',monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0E1B1A; --surface:#142624; --surface-2:#1B322F;
+      --ink:#E7F1EF; --ink-muted:#9FB6B3; --border:#274543;
+      --accent:#2B6F6B; --accent-2:#6FC7C2; --accent-ink:#FFFFFF;
+      --shadow:0 8px 28px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0E1B1A; --surface:#142624; --surface-2:#1B322F;
+    --ink:#E7F1EF; --ink-muted:#9FB6B3; --border:#274543;
+    --accent:#2B6F6B; --accent-2:#6FC7C2; --accent-ink:#FFFFFF;
+    --shadow:0 8px 28px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; min-height:100vh; background:var(--bg); color:var(--ink);
+    font-family:var(--font-body); display:flex; align-items:center; justify-content:center;
+    padding:32px 18px;
+  }
+  .card{
+    max-width:560px; width:100%; background:var(--surface); border:1px solid var(--border);
+    border-radius:20px; box-shadow:var(--shadow); padding:44px 38px 36px; text-align:center;
+  }
+  .eyebrow{
+    font-family:var(--font-mono); font-size:11.5px; color:var(--accent-2);
+    letter-spacing:.08em; text-transform:uppercase; display:block; margin-bottom:10px;
+  }
+  h1{
+    font-family:var(--font-display); font-size:clamp(22px,4vw,28px);
+    margin:0 0 14px; line-height:1.4; color:var(--ink);
+  }
+  p.desc{
+    font-size:14px; color:var(--ink-muted); line-height:1.7; margin:0 0 28px;
+  }
+  .btn-group{ display:flex; flex-direction:column; gap:12px; margin-bottom:30px; }
+  .btn{
+    font-family:var(--font-body); font-weight:700; font-size:15px;
+    border-radius:12px; padding:15px 20px; border:1px solid transparent;
+    cursor:pointer; display:flex; align-items:center; justify-content:center; gap:9px;
+    text-decoration:none; transition:filter .15s, transform .15s;
+  }
+  .btn:hover{ filter:brightness(1.06); transform:translateY(-1px); }
+  .btn-primary{ background:var(--accent); color:var(--accent-ink); }
+  .btn-outline{ background:var(--surface-2); color:var(--accent); border-color:var(--border); }
+  .btn small{ font-family:var(--font-mono); font-weight:500; font-size:11px; opacity:.85; }
+  .credit{
+    border-top:1px solid var(--border); padding-top:18px; margin-top:4px;
+    font-size:12px; color:var(--ink-muted); line-height:1.8;
+  }
+  .credit b{ color:var(--ink); font-weight:700; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <span class="eyebrow">2026 여주 교수평통 연수 · 다온 아카데미 2기</span>
+    <h1>교육과정-수업-평가<br>통합설계 사례 분석 워크북</h1>
+    <p class="desc">
+      배정받은 설계 사례를 분석하고, 내 단원의 학습목표·평가계획·수업계획을
+      직접 설계해보는 실습형 웹앱입니다. 아래에서 실행 방식을 선택하세요.
+    </p>
+    <div class="btn-group">
+      <a class="btn btn-primary" href="app.html">
+        🌐 웹에서 바로 실행 <small>(추천 · 인터넷 연결 필요)</small>
+      </a>
+      <a class="btn btn-outline" href="app.html" download="통합설계_사례분석_워크북.html">
+        ⬇️ 앱으로 다운로드 받아서 실행 <small>(오프라인 · 파일로 저장 후 더블클릭)</small>
+      </a>
+    </div>
+    <div class="credit">
+      <b>여주중학교</b> · 여주중수업탐구공동체<br>
+      제작·문의: jb10000@korea.kr
+    </div>
+  </div>
+</body>
+</html>
