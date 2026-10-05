@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>통합설계 사례 분석 워크북</title>
+<title>수업탐구 연수 플랫폼</title>
 <!-- Google Fonts를 외부에서 불러오던 링크는 제거했습니다. 학교망처럼 외부 접속이 막힌 환경에서
      이 요청이 실패하면 PDF 캡처(html2canvas) 도중 일부 카드가 빈 캔버스(0×0)로 만들어지고,
      이어지는 jsPDF addImage 단계에서 "Invalid argument passed to jsPDF.scale" 오류로 이어져
@@ -190,6 +190,69 @@ tr.drag-over-after{box-shadow:inset 0 -2px 0 0 var(--accent-2);}
   .day-placeholder .big{font-family:var(--font-display);font-size:21px;color:var(--ink);margin-bottom:8px;}
   .day-placeholder .icon{font-size:34px;margin-bottom:14px;}
 
+  /* ---------- 클래스4 (논술형 평가도구 설계) ---------- */
+  #day4Section .d4-q{display:flex;align-items:center;gap:8px;font-weight:700;font-size:13.5px;margin:18px 0 4px;color:var(--ink);}
+  #day4Section .card-body > .d4-q:first-child, #day4Section .hint + .d4-q{margin-top:6px;}
+  #day4Section .d4-badge{display:inline-flex;align-items:center;justify-content:center;flex:none;width:20px;height:20px;border-radius:50%;background:var(--accent);color:var(--accent-ink);font-family:var(--font-mono);font-size:11px;font-weight:700;}
+  #day4Section .d4-explain{font-size:12.3px;line-height:1.65;color:var(--ink-muted);background:var(--surface-2);border-left:3px solid var(--accent-2);border-radius:0 8px 8px 0;padding:7px 12px;margin:0 0 8px;}
+  #day4Section .d4-explain-sub{margin-left:0;}
+  #day4Section .d4-sublabel{font-size:12.5px;font-weight:700;color:var(--accent);margin:12px 0 4px;}
+  #day4Section .d4-sublabel-big{font-size:14px;margin:20px 0 6px;color:var(--ink);}
+  #day4Section .d4-arrow{text-align:center;font-size:12px;color:var(--accent-2);font-weight:700;margin:8px 0 2px;}
+  #day4Section .d4-inline{display:flex;align-items:center;flex-wrap:wrap;gap:8px;font-size:13px;margin-bottom:4px;}
+  #day4Section .d4-inline input{width:84px;text-align:center;}
+  #day4Section .d4-item{border:1px solid var(--border);border-radius:10px;padding:10px 12px 12px;margin:8px 0;background:var(--surface);}
+  #day4Section .d4-item-head{display:flex;align-items:center;justify-content:space-between;gap:8px;font-weight:700;font-size:12.5px;color:var(--accent);margin-bottom:8px;}
+  #day4Section .d4-item label{font-size:11.5px;font-weight:700;color:var(--ink-muted);display:block;margin:8px 0 3px;}
+  #day4Section .d4-item label small{font-weight:400;display:block;margin-top:1px;line-height:1.5;}
+  #day4Section .d4-item .d4-lv{display:grid;grid-template-columns:84px 1fr auto;gap:8px;align-items:start;margin-top:6px;}
+  #day4Section .d4-item .d4-lv input{text-align:center;}
+  #day4Section .d4-item textarea, #day4Section .d4-item input[type=text]{width:100%;}
+  #day4Section .d4-lv-btns{display:flex;gap:6px;margin-top:6px;}
+  #day4Section select{max-width:240px;}
+  #day4Section .d4-flowtbl, #day4Section .d4-lessontbl, #day4Section .d4-rubtbl{min-width:640px;table-layout:fixed;}
+  #day4Section .d4-flowtbl td, #day4Section .d4-flowtbl th{min-width:150px;}
+  #day4Section .d4-flowtbl .d4-flow-h{background:var(--surface-2);}
+  #day4Section .d4-lessontbl td, #day4Section .d4-rubtbl td{vertical-align:top;}
+  #day4Section .d4-lessontbl th, #day4Section .d4-rubtbl th, #day4Section .d4-flowtbl th{background:var(--accent);}
+  #day4Section .d4-lessontbl th.d4-peach-h{background:var(--amber-bg);color:var(--amber-ink);}
+  #day4Section .d4-lessontbl td.d4-peach{background:var(--amber-bg);}
+  #day4Section .d4-lessontbl tr:nth-child(even) td{background:transparent;}
+  #day4Section .d4-lessontbl tr:nth-child(even) td.d4-peach{background:var(--amber-bg);}
+  #day4Section .d4-rubtbl tr:nth-child(even) td, #day4Section .d4-flowtbl tr:nth-child(even) td{background:transparent;}
+  #day4Section .d4-rubtbl td.cat-label{background:var(--surface-2);}
+  #day4Section .d4-boxed{border:1px solid var(--accent-2);border-radius:6px;background:var(--surface-2);margin-bottom:4px;}
+  #day4Section .d4-boxed input{background:transparent;font-weight:700;}
+  #day4Section .d4-tag{font-size:12px;font-weight:700;color:var(--accent);padding:2px 5px 0;}
+  #day4Section .d4-cellbtns{display:flex;flex-direction:column;gap:4px;margin-top:6px;align-items:stretch;}
+  #day4Section td.d4-act{vertical-align:middle;text-align:center;}
+  #day4Section td.d4-act button{display:block;width:100%;margin:2px 0;white-space:nowrap;}
+  #day4Section .d4-notes td textarea{min-height:60px;}
+  #day4Section .d4-rubtbl td.d4-act{white-space:nowrap;}
+  #day4Section .d4-rubtbl td.d4-act button{display:inline-block;width:auto;margin:1px;padding:4px 7px;font-size:11px;}
+  #day4Section #d4_imgBox{display:flex;flex-direction:column;gap:10px;margin-top:10px;}
+  #day4Section .d4-img{position:relative;border:1px solid var(--border);border-radius:8px;padding:8px;background:#fff;text-align:center;}
+  #day4Section .d4-img img{max-width:100%;height:auto;display:inline-block;}
+  #day4Section .d4-img .d4-img-del{position:absolute;top:6px;right:6px;}
+  #day4Section .d4-imgbar{display:flex;align-items:center;flex-wrap:wrap;gap:8px 12px;margin-top:8px;}
+  #day4Section .d4-imghint{font-size:11.5px;color:var(--ink-muted);line-height:1.5;flex:1 1 260px;}
+  #day4Section #d4_stimWrap.d4-drag{outline:2px dashed var(--accent-2);outline-offset:4px;}
+  #day4Section .d4-chkgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px 12px;}
+  #day4Section .d4-chk{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:var(--ink);background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:7px 10px;margin:0;cursor:pointer;}
+  #day4Section .d4-chk input{width:16px;height:16px;flex:none;}
+  #day4Section .d4-chk:has(input:checked){background:var(--surface-2);border-color:var(--accent-2);color:var(--accent);}
+  @media (max-width:640px){ #day4Section .d4-chkgrid{grid-template-columns:1fr 1fr;} }
+  #day4Section .d4-gen{background:var(--surface-2);border:1px solid var(--accent-2);border-radius:10px;padding:10px 12px;margin:0 0 8px;display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;}
+  #day4Section .d4-gen-ttl{flex:1 0 100%;font-size:12.3px;color:var(--ink-muted);line-height:1.6;}
+  #day4Section .d4-gen .padlet-link{margin:2px 0;}
+  #day4Section input[type=text], #day4Section textarea{width:100%;}
+  #day4Section .d4-inline input[type=text]{width:84px;}
+  #day4Section .d4-item .d4-lv input[type=text]{width:100%;}
+  #day4Section .field-grid{align-items:start;}
+  @media (max-width:640px){
+    #day4Section .d4-item .d4-lv{grid-template-columns:70px 1fr;}
+    #day4Section .d4-item .d4-lv .btn-danger-ghost{grid-column:1/-1;justify-self:end;}
+  }
   .static-6table td:first-child,.static-6table th:first-child{width:56px;text-align:center;}
   .static-6table td:nth-child(2),.static-6table th:nth-child(2){width:130px;}
 
@@ -209,75 +272,155 @@ tr.drag-over-after{box-shadow:inset 0 -2px 0 0 var(--accent-2);}
 
 <style>
   #launcherView{
-    position:fixed; inset:0; z-index:999; background:var(--bg);
-    display:flex; align-items:center; justify-content:center; padding:32px 18px;
+    --o:#B85A17; --o-ink:#FFFFFF; --o-bg:#FCEBDD; --o-line:#F1CDB0;
+    position:fixed; inset:0; z-index:999; overflow-y:auto;
+    background:
+      radial-gradient(900px 420px at 12% -8%, rgba(46,139,139,.16), transparent 60%),
+      radial-gradient(800px 420px at 100% 0%, rgba(184,90,23,.12), transparent 60%),
+      var(--bg);
+    display:flex; align-items:flex-start; justify-content:center; padding:44px 18px 40px;
   }
-  #launcherView .card{
-    max-width:560px; width:100%; background:var(--surface); border:1px solid var(--border);
-    border-radius:20px; box-shadow:var(--shadow); padding:44px 38px 36px; text-align:center;
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]) #launcherView{ --o:#D9803F; --o-ink:#1A0F07; --o-bg:#3A2819; --o-line:#5A3E27; }
+  }
+  :root[data-theme="dark"] #launcherView{ --o:#D9803F; --o-ink:#1A0F07; --o-bg:#3A2819; --o-line:#5A3E27; }
+  #launcherView .lv-wrap{ width:100%; max-width:880px; margin:auto 0; }
+  #launcherView .lv-head{ text-align:center; margin-bottom:30px; }
+  #launcherView .lv-mark{
+    width:56px; height:56px; margin:0 auto 16px; border-radius:16px; display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(135deg,var(--accent) 0%,var(--accent-2) 100%); color:#fff; box-shadow:var(--shadow);
   }
   #launcherView .eyebrow{
     font-family:var(--font-mono); font-size:11.5px; color:var(--accent-2);
-    letter-spacing:.08em; text-transform:uppercase; display:block; margin-bottom:10px;
+    letter-spacing:.06em; display:block; margin-bottom:10px;
   }
   #launcherView h1{
-    font-family:var(--font-display); font-size:clamp(22px,4vw,28px);
-    margin:0 0 14px; line-height:1.4; color:var(--ink);
+    font-family:var(--font-display); font-size:clamp(28px,5vw,38px);
+    margin:0 0 12px; line-height:1.3; color:var(--ink); letter-spacing:-.01em;
   }
-  #launcherView p.desc{ font-size:14px; color:var(--ink-muted); line-height:1.7; margin:0 0 28px; }
-  #launcherView .btn-group{ display:flex; flex-direction:column; gap:12px; margin-bottom:30px; }
-  #launcherView .btn{
-    font-family:var(--font-body); font-weight:700; font-size:15px;
-    border-radius:12px; padding:15px 20px; border:1px solid transparent;
-    cursor:pointer; display:flex; align-items:center; justify-content:center; gap:9px;
-    text-decoration:none; transition:filter .15s, transform .15s;
+  #launcherView p.desc{ font-size:15px; color:var(--ink-muted); line-height:1.7; margin:0 auto; max-width:560px; }
+  #launcherView .lv-label{ font-size:12px; font-weight:700; color:var(--ink-muted); letter-spacing:.04em; margin:0 4px 10px; }
+  #launcherView .lv-grid{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  #launcherView .lv-course{
+    background:var(--surface); border:1px solid var(--border); border-radius:18px; box-shadow:var(--shadow);
+    padding:26px 24px 22px; display:flex; flex-direction:column; text-align:left;
   }
-  #launcherView .btn:hover{ filter:brightness(1.06); transform:translateY(-1px); }
-  #launcherView .btn-primary{ background:var(--accent); color:var(--accent-ink); }
-  #launcherView .btn-outline{ background:var(--surface-2); color:var(--accent); border-color:var(--border); }
-  #launcherView .btn small{ font-family:var(--font-mono); font-weight:500; font-size:11px; opacity:.85; }
+  #launcherView .lv-ico{
+    width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    background:var(--surface-2); color:var(--accent); margin-bottom:14px;
+  }
+  #launcherView .lv-c4 .lv-ico{ background:var(--o-bg); color:var(--o); }
+  #launcherView .lv-chip{
+    align-self:flex-start; font-size:11.5px; font-weight:700; padding:4px 10px; border-radius:20px;
+    background:var(--surface-2); color:var(--accent); margin-bottom:12px;
+  }
+  #launcherView .lv-c4 .lv-chip{ background:var(--o-bg); color:var(--o); }
+  #launcherView h2{ font-family:var(--font-display); font-size:19px; line-height:1.45; margin:0 0 10px; color:var(--ink); }
+  #launcherView .lv-text{ font-size:13.5px; color:var(--ink-muted); line-height:1.75; margin:0 0 14px; }
+  #launcherView .lv-meta{ font-size:12px; color:var(--ink-muted); margin:auto 0 16px; padding-top:12px; border-top:1px dashed var(--border); }
+  #launcherView .lv-meta b{ color:var(--ink); }
+  #launcherView .lv-btn{
+    font-family:var(--font-body); font-weight:700; font-size:15px; border-radius:12px; padding:13px 18px; border:0; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; gap:8px; background:var(--accent); color:var(--accent-ink);
+    transition:filter .15s, transform .15s;
+  }
+  #launcherView .lv-c4 .lv-btn{ background:var(--o); color:var(--o-ink); }
+  #launcherView .lv-btn:hover{ filter:brightness(1.07); transform:translateY(-1px); }
+  #launcherView .lv-btn:focus-visible, #launcherView .lv-dl:focus-visible{ outline:3px solid var(--accent-2); outline-offset:2px; }
+  #launcherView .lv-foot{ margin-top:26px; text-align:center; }
+  #launcherView .lv-dl{
+    font-family:var(--font-body); font-size:13px; font-weight:700; color:var(--accent); background:var(--surface);
+    border:1px solid var(--border); border-radius:999px; padding:9px 18px; cursor:pointer;
+  }
+  #launcherView .lv-dl small{ font-weight:500; color:var(--ink-muted); margin-left:4px; }
+  #launcherView .lv-dl:hover{ background:var(--surface-2); }
+  #launcherView .lv-note{ font-size:12px; color:var(--ink-muted); line-height:1.7; margin:14px 0 0; }
   #launcherView .credit{
-    border-top:1px solid var(--border); padding-top:18px; margin-top:4px;
-    font-size:12px; color:var(--ink-muted); line-height:1.8;
+    border-top:1px solid var(--border); padding-top:16px; margin-top:20px;
+    font-size:12px; color:var(--ink-muted); line-height:1.8; text-align:center;
   }
   #launcherView .credit b{ color:var(--ink); font-weight:700; }
+  @media (max-width:700px){
+    #launcherView{ padding:28px 14px 28px; }
+    #launcherView .lv-grid{ grid-template-columns:1fr; }
+    #launcherView .lv-course{ padding:22px 20px 20px; }
+  }
+  .rail-group{ padding:12px 20px 4px; font-size:10.5px; font-weight:700; letter-spacing:.04em; color:var(--ink-muted); }
+  .rail-back{ display:inline-block; margin-top:10px; font-size:12px; font-weight:700; color:var(--accent); background:none; border:0; padding:0; cursor:pointer; font-family:var(--font-body); }
+  .rail-back:hover{ text-decoration:underline; }
+  @media (max-width:760px){ .rail-group{ display:none; } }
 </style>
 </head>
 <body>
 <div id="launcherView">
-  <div class="card">
-    <span class="eyebrow">2026 여주 교수평통 연수 · 다온 아카데미 2기</span>
-    <h1>교육과정-수업-평가<br>통합설계 사례 분석 워크북</h1>
-    <p class="desc">
-      배정받은 설계 사례를 분석하고, 내 단원의 학습목표·평가계획·수업계획을
-      직접 설계한 뒤, 동료의 설계를 서로 교차점검해보는 실습형 웹앱입니다. (1~3회차 통합) 아래에서 실행 방식을 선택하세요.
-    </p>
-    <div class="btn-group">
-      <a class="btn btn-primary" href="#" onclick="document.getElementById('launcherView').style.display='none'; document.getElementById('app').style.display='flex'; return false;">
-        🌐 웹에서 바로 실행 <small>(추천 · 인터넷 연결 필요)</small>
-      </a>
-      <a class="btn btn-outline" href="#" onclick="downloadStandaloneApp(); return false;">
-        ⬇️ 앱으로 다운로드 받아서 실행 <small>(오프라인 · 파일로 저장 후 더블클릭)</small>
-      </a>
+  <div class="lv-wrap">
+    <header class="lv-head">
+      <div class="lv-mark" aria-hidden="true">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 5.5c3-1.4 6-1.2 9.5 1v12c-3.5-2.2-6.5-2.4-9.5-1z"/><path d="M21.5 5.5c-3-1.4-6-1.2-9.5 1v12c3.5-2.2 6.5-2.4 9.5-1z"/></svg>
+      </div>
+      <span class="eyebrow">경기 교원의 전문성 신장을 위한 연수 실습 도구 모음</span>
+      <h1>수업탐구 연수 플랫폼</h1>
+      <p class="desc">연수에서 직접 설계하고 동료와 나누는 실습형 웹앱입니다. 참여하는 연수를 선택하세요.</p>
+    </header>
+
+    <div class="lv-label">연수 선택</div>
+    <div class="lv-grid">
+      <article class="lv-course lv-c4">
+        <div class="lv-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4l10.5-10.5a2.1 2.1 0 0 0-3-3L5 17z"/><path d="M13.5 7.5l3 3"/></svg></div>
+        <span class="lv-chip">2026학년도 2학기 · 여주교육지원청</span>
+        <h2>서논술형 평가 및 AI 활용<br>교원 직무연수(국어과)</h2>
+        <p class="lv-text">정기시험 논술형 평가도구를 양식에 따라 직접 설계합니다. 교육과정 분석, 출제 개요, 문항, 채점기준표, 점검 체크리스트를 순서대로 작성하고 동료와 피드백을 나눕니다.</p>
+        <div class="lv-meta"><b>클래스4</b> · 논술형 평가도구 설계</div>
+        <button type="button" class="lv-btn" onclick="enterApp('day4')">시작하기 <span aria-hidden="true">→</span></button>
+      </article>
+
+      <article class="lv-course">
+        <div class="lv-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><path d="M14 17h6M17 14v6"/></svg></div>
+        <span class="lv-chip">다온 아카데미 2기</span>
+        <h2>교육과정-수업-평가<br>통합설계 직무연수</h2>
+        <p class="lv-text">배정받은 설계 사례를 분석하고, 내 단원의 학습목표·평가계획·수업계획을 직접 설계한 뒤 동료의 설계를 서로 교차점검합니다.</p>
+        <div class="lv-meta"><b>클래스1~3</b> · 사례 분석 · 설계 · 공유</div>
+        <button type="button" class="lv-btn" onclick="enterApp('day1')">시작하기 <span aria-hidden="true">→</span></button>
+      </article>
     </div>
-    <div class="credit">
-      <b>여주중학교</b> · 여주중수업탐구공동체<br>
-      제작·문의: jb10000@korea.kr
+
+    <div class="lv-foot">
+      <button type="button" class="lv-dl" onclick="downloadStandaloneApp(); return false;">⬇️ 앱 파일로 내려받기 <small>(오프라인 · 파일로 저장 후 더블클릭)</small></button>
+      <p class="lv-note">입력한 내용은 서버로 전송되지 않습니다. 작성 중에는 ‘저장(JSON)’으로 내 기기에 보관하세요.</p>
+      <div class="credit">
+        <b>여주중학교</b> · 여주중수업탐구공동체<br>
+        제작·문의: jb10000@korea.kr
+      </div>
     </div>
   </div>
 </div>
-
-
+<script>
+  function enterApp(day){
+    document.getElementById('launcherView').style.display = 'none';
+    document.getElementById('app').style.display = 'flex';
+    var tab = document.querySelector('.day-tab[data-day="' + day + '"]');
+    if(tab){ tab.click(); }
+    window.scrollTo(0, 0);
+  }
+  function backToLauncher(){
+    document.getElementById('app').style.display = 'none';
+    document.getElementById('launcherView').style.display = 'flex';
+  }
+</script>
 <div class="app-shell" id="app" style="display:none">
   <aside class="rail">
     <div class="rail-brand">
-      <span class="eyebrow">2026 여주 교수평통 연수</span>
-      <h1>교육과정-수업-평가<br>통합설계 사례 분석하기</h1>
+      <span class="eyebrow">수업탐구 연수 플랫폼</span>
+      <h1>연수 실습 웹앱</h1>
+      <button type="button" class="rail-back" onclick="backToLauncher()">← 연수 선택</button>
     </div>
+    <div class="rail-group">다온 아카데미 2기 · 통합설계</div>
     <div class="day-tab active" data-day="day1"><span class="num">1</span> 클래스1 (교육과정 사례 분석)</div>
     <div class="day-tab" data-day="day2"><span class="num">2</span> 클래스2 (교육과정 설계)</div>
     <div class="day-tab" data-day="day3"><span class="num">3</span> 클래스3 (교육과정 공유)</div>
-    <div class="rail-foot">다온 아카데미 2기<br>1~3회차 통합 · 웹앱판 v4</div>
+    <div class="rail-group">서논술형 평가 및 AI 활용(국어과)</div>
+    <div class="day-tab" data-day="day4"><span class="num">4</span> 클래스4 (논술형 평가도구 설계)</div>
+    <div class="rail-foot">여주중수업탐구공동체<br>웹앱판 v6</div>
   </aside>
 
   <div class="main">
@@ -1133,6 +1276,162 @@ tr.drag-over-after{box-shadow:inset 0 -2px 0 0 var(--accent-2);}
           <div class="card-body">
             <div class="q-label">동료의 설계를 점검하면서, 내 설계에도 적용하고 싶어진 점</div>
             <textarea class="autogrow" id="d3_selfReflect" rows="2"></textarea>
+          </div>
+        </div>
+
+      </section>
+
+      <section id="day4Section" style="display:none">
+        <div class="hero capture-unit4">
+          <span class="eyebrow">클래스4 · 정기시험 논술형 평가도구 양식</span>
+          <h2>논술형 평가도구 개발하기 실습</h2>
+          <p>이 양식은 「교육과정 → 수업 → 형성평가/피드백 → 정기시험의 논술형 평가」로 이어지는 과정 속에서 논술형 평가도구가 일관성 있는 흐름으로 설계될 수 있도록 지원하기 위한 양식입니다.</p>
+        </div>
+
+        <div class="banner capture-unit4">
+          <b>작성 순서</b> ① 교육과정(핵심 아이디어, 성취기준 및 성취수준) 분석 → ② 출제 개요 → ③ 수업-평가 연계 설계 → ④ 논술형 평가 문항 → ⑤ 채점기준표 제작 → ⑥ 점검 및 성찰 체크리스트<br>
+          위에서 아래로 차례대로 작성하세요. 각 칸 바로 위의 설명을 읽고 내용을 적으면 됩니다.
+          <span style="display:block;margin-top:6px;font-size:12px;color:var(--ink-muted);">원본 양식·설명: 「2026 중등 정기시험 논술형 평가도구(국어과)」 pp.12–21</span>
+        </div>
+
+        <div class="card capture-unit4">
+          <div class="card-head"><h3>01 교육과정 분석</h3><span class="stage">[① 성취기준 → 평가 요소]</span></div>
+          <div class="card-body">
+            <p class="hint">성취기준을 분석하여 학생이 평가 장면에서 수행해야 할 내용을 평가 요소로 추출합니다.</p>
+            <div class="field-grid">
+<div><div class="d4-q"><span class="d4-badge">1</span><span>학교급</span></div><div class="d4-explain">해당 평가 과제가 적용되는 학교급</div><select id="d4_level"><option value="">— 선택 —</option><option>중학교</option><option>고등학교</option></select></div>
+<div><div class="d4-q"><span>학년/학기</span></div><input type="text" id="d4_grade" placeholder="예: 1학년 2학기"></div>
+<div><div class="d4-q"><span class="d4-badge">2</span><span>과목</span></div><div class="d4-explain">해당 학년이 배우는 교과목명</div><input type="text" id="d4_subject"></div>
+<div><div class="d4-q"><span class="d4-badge">3</span><span>영역</span></div><div class="d4-explain">해당 논술형 평가 과제가 포함된 학습 내용으로 교육과정 내용 체계의 영역</div><input type="text" id="d4_area"></div>
+<div class="full"><div class="d4-q"><span class="d4-badge">4</span><span>단원/주제</span></div><div class="d4-explain">단원명 또는 총 차시에 걸쳐 다루는 핵심 주제</div><input type="text" id="d4_unit"></div>
+<div class="full"><div class="d4-q"><span class="d4-badge">5</span><span>교과 역량</span></div><div class="d4-explain">2022 개정 국어과 교과 역량 6가지 중 해당 단원에서 강조하는 역량 (여러 개 선택 가능)</div><div class="d4-chkgrid" id="d4_comp"><label class="d4-chk"><input type="checkbox" class="d4-comp" value="비판적·창의적 사고 역량"> 비판적·창의적 사고 역량</label><label class="d4-chk"><input type="checkbox" class="d4-comp" value="자료·정보 활용 역량"> 자료·정보 활용 역량</label><label class="d4-chk"><input type="checkbox" class="d4-comp" value="의사소통 역량"> 의사소통 역량</label><label class="d4-chk"><input type="checkbox" class="d4-comp" value="공동체·대인 관계 역량"> 공동체·대인 관계 역량</label><label class="d4-chk"><input type="checkbox" class="d4-comp" value="문화 향유 역량"> 문화 향유 역량</label><label class="d4-chk"><input type="checkbox" class="d4-comp" value="자기 성찰·계발 역량"> 자기 성찰·계발 역량</label></div></div>
+            </div>
+<div class="d4-q"><span class="d4-badge">6</span><span>핵심 아이디어</span></div><div class="d4-explain">단원을 통해 학생들이 도달해야 하는 2022 개정 교육과정의 핵심 아이디어 영역을 아우르면서 해당 영역의 학습을 통해 일반화할 수 있는 내용을 핵심적으로 진술한 것</div>
+            <textarea class="autogrow" id="d4_idea" rows="3" placeholder="한 줄에 하나씩"></textarea>
+<div class="d4-q"><span class="d4-badge">7</span><span>내용 요소</span></div><div class="d4-explain">교과(목)에서 배워야 할 필수 학습 내용</div>
+            <div class="d4-sublabel">지식·이해</div><div class="d4-explain d4-explain-sub">교과(목) 및 학년(군)별로 해당 영역에서 알고 이해해야 할 내용</div>
+            <textarea class="autogrow" id="d4_know" rows="2" placeholder="한 줄에 하나씩"></textarea>
+            <div class="d4-sublabel">과정·기능</div><div class="d4-explain d4-explain-sub">교과 고유의 사고 및 탐구 과정 또는 기능</div>
+            <textarea class="autogrow" id="d4_do" rows="2" placeholder="한 줄에 하나씩"></textarea>
+            <div class="d4-sublabel">가치·태도</div><div class="d4-explain d4-explain-sub">교과 활동을 통해 기를 수 있는 고유한 가치와 태도</div>
+            <textarea class="autogrow" id="d4_value" rows="2" placeholder="한 줄에 하나씩"></textarea>
+<div class="d4-q"><span>성취기준과 성취기준별 성취수준</span></div><div class="d4-explain">성취기준을 적고, 그 성취기준의 성취수준(A~E)을 수준별로 적습니다. 성취기준이 둘 이상이면 ‘성취기준 추가’를 누르세요.</div>
+            <div class="d4-gen" data-html2canvas-ignore="true">
+              <div class="d4-gen-ttl">성취기준 및 성취수준 생성기 — 학교급에 맞는 생성기를 열어 결과를 아래 칸에 옮겨 적으세요.</div>
+              <a class="padlet-link" href="https://script.google.com/macros/s/AKfycbwZkXga03CRomcmerIG2M-UNwYAByvcSlEz35ITNqEaQh_HNyb8niTvJZF_f8lwz5eu/exec" target="_blank" rel="noopener">📌 성취기준 및 성취수준 생성기 (중학교) ↗</a>
+              <a class="padlet-link" href="https://100pro-100percent.github.io/hs-achievement-generator/" target="_blank" rel="noopener">📌 성취기준 및 성취수준 생성기 (고등학교) ↗</a>
+            </div>
+            <div id="d4_stdBox"></div>
+            <button class="btn btn-ghost btn-sm add-row-btn" data-html2canvas-ignore="true" onclick="d4Add('std')">＋ 성취기준 추가</button>
+            <div class="d4-arrow">▼ 성취기준·성취수준을 분석하여 도출</div>
+<div class="d4-q"><span class="d4-badge">8</span><span>평가 요소</span></div><div class="d4-explain">교육과정 성취기준 도달의 증거로, 학생들이 보여주기를 기대하는 핵심 내용을 구체적으로 기술한 평가 내용을 의미하며, 성취기준 또는 성취수준을 분석하여 도출한 해당 논술형 문항을 평가하는 요소</div>
+            <textarea class="autogrow" id="d4_elements" rows="3" placeholder="한 줄에 하나씩 (‘-하기’ 형태로)"></textarea>
+          </div>
+        </div>
+
+        <div class="card capture-unit4">
+          <div class="card-head"><h3>02 정기시험 논술형 평가도구 설계</h3><span class="stage">[② 출제 개요]</span></div>
+          <div class="card-body">
+            <p class="hint">‘학생이 평가 장면에서 무엇을 작성해야 하는가’를 먼저 결정합니다.<br>성취기준에서 도출한 평가 요소로 평가를 먼저 설계합니다.</p>
+<div class="d4-q"><span class="d4-badge">1</span><span>평가 시기</span></div><div class="d4-explain">정기시험(1, 2차) 구분</div>
+            <select id="d4_timing"><option value="">— 선택 —</option><option>1차</option><option>2차</option></select>
+<div class="d4-q"><span class="d4-badge">2</span><span>평가 시간</span></div><div class="d4-explain">전체 정기시험 시간 중 해당 문항의 답안 작성에 소요될 것으로 예상되는 시간</div>
+            <div class="d4-inline">전체 <input type="text" id="d4_minTotal" inputmode="numeric"> 분 중 <input type="text" id="d4_minUse" inputmode="numeric"> 분 소요 예상</div>
+<div class="d4-q"><span class="d4-badge">3</span><span>총 배점</span></div><div class="d4-explain">정기시험 논술형 평가 문항의 총 배점</div>
+            <div class="d4-inline"><input type="text" id="d4_points" inputmode="numeric"> 점</div>
+            <div class="d4-sublabel d4-sublabel-big">출제 의도</div>
+<div class="d4-q"><span class="d4-badge">4</span><span>메타인지 (Metacognition)</span></div><div class="d4-explain">학생이 자신의 사고 과정을 점검·성찰하고, 근거를 바탕으로 논리를 구성하여 의견을 표현하는 과정을 기술</div>
+            <textarea class="autogrow" id="d4_meta" rows="3"></textarea>
+<div class="d4-q"><span class="d4-badge">5</span><span>실제성 (Authenticity)</span></div><div class="d4-explain">평가 과제가 학생의 실생활 맥락 및 실제 경험과 어떻게 자연스럽게 연결되는지를 기술</div>
+            <textarea class="autogrow" id="d4_auth" rows="3"></textarea>
+<div class="d4-q"><span class="d4-badge">6</span><span>관점 (Perspectives)</span></div><div class="d4-explain">학생이 다양한 관점과 근거를 살펴보고, 자신의 관점을 근거 있게 표현하는 과정을 기술</div>
+            <textarea class="autogrow" id="d4_persp" rows="3"></textarea>
+<div class="d4-q"><span class="d4-badge">7</span><span>평가 요소 및 학생 수행 내용</span></div><div class="d4-explain">평가 요소별로 학생이 수행해야 할 구체적인 내용을 기술</div>
+            <div id="d4_peBox"></div>
+            <button class="btn btn-ghost btn-sm add-row-btn" data-html2canvas-ignore="true" onclick="d4Add('pe')">＋ 평가 요소 추가</button>
+<div class="d4-q"><span class="d4-badge">8</span><span>수업-평가 연계 주안점</span></div><div class="d4-explain">수업에서의 학습 경험이 정기시험 논술형 문항의 해결 과정으로 확장·연결되는 흐름과, 학생의 점검·개선·성찰을 지원하기 위해 중점적으로 고려해야 할 사항을 기술</div>
+            <textarea class="autogrow" id="d4_focus" rows="3"></textarea>
+          </div>
+        </div>
+
+        <div class="card capture-unit4">
+          <div class="card-head"><h3>03 수업-평가 연계 설계</h3><span class="stage">[③ 차시별 연계]</span></div>
+          <div class="card-body">
+            <p class="hint">논술형 평가에 필요한 역량이 차시별 수업을 통해 점진적으로 발달·심화되도록 수업과 평가를 연계합니다. 평가 문항과 관련된 핵심 차시를 선정하여 제시하고, 각 차시에서 평가 요소가 어떻게 다루어져 논리적인 답안으로 이어지는지 유기적인 흐름을 중심으로 설계합니다. (※ 전체 수업 설계 중 논술형 평가와 연계된 차시만 제시)</p>
+<div class="d4-q"><span class="d4-badge">1</span><span>수업 흐름도</span></div><div class="d4-explain">해당 주제의 전체 차시별 학습 흐름을 보여주고, 그중 논술형 평가와 연계되는 차시의 수업 내용을 아래 표에 구체적으로 제시</div>
+            <div id="d4_flowBox"></div>
+            <button class="btn btn-ghost btn-sm add-row-btn" data-html2canvas-ignore="true" onclick="d4Add('flow')">＋ 흐름 구간(열) 추가</button>
+            <div class="d4-sublabel d4-sublabel-big">핵심 차시별 연계 설계</div>
+            <div class="d4-explain"><b>탐구 질문</b>: 학생들이 교과별 탐구활동과 전이가 일어나도록 하는 질문 · <b>학습 활동</b>: 탐구 질문을 해결하기 위한 학생 중심 활동<br><b>형성평가</b>: 해당 차시에서 학생들의 성취 여부를 확인하는 평가 방법 · <b>피드백</b>: 교수·학습 과정과 평가 결과에서 드러난 다양한 학습의 증거를 바탕으로 학생에게 정보를 제공하여, 학생이 자신의 학습 상태를 이해하고 성공적인 학습에 이르도록 구체적인 방향을 제시<br><b>논술형 문항 연계 평가 요소</b>: 해당 차시의 학습 활동과 연계된 평가 요소 기술</div>
+            <div id="d4_lessonBox"></div>
+            <button class="btn btn-ghost btn-sm add-row-btn" data-html2canvas-ignore="true" onclick="d4Add('lesson')">＋ 핵심 차시(행) 추가</button>
+          </div>
+        </div>
+
+        <div class="card capture-unit4">
+          <div class="card-head"><h3>04 논술형 평가 문항</h3><span class="stage">[④ 실제 문항]</span></div>
+          <div class="card-body">
+            <p class="hint">수업 과정에서 누적된 학습 성과를 최종 평가할 수 있도록 평가 요소와 채점 기준이 반영된 실제 문항을 구성합니다.</p>
+            <div class="d4-q"><span>제시 자료</span></div>
+            <div class="d4-explain">‘※ 다음은 ~이다. 물음에 답하시오.’와 같은 안내 문장과 함께 글·도표 등 학생에게 제시할 자료를 적습니다. 그림·표·화면 캡처는 아래 ‘그림 추가’로 붙일 수 있습니다.</div>
+            <div id="d4_stimWrap">
+              <textarea class="autogrow" id="d4_stimulus" rows="6"></textarea>
+              <div id="d4_imgBox"></div>
+              <div class="d4-imgbar" data-html2canvas-ignore="true">
+                <button type="button" class="btn btn-ghost btn-sm" onclick="document.getElementById('d4_imgInput').click()">🖼 그림 추가</button>
+                <input type="file" id="d4_imgInput" accept="image/*" multiple style="display:none">
+                <span class="d4-imghint">파일을 고르거나, 이 칸에서 캡처한 그림을 붙여넣기(Ctrl+V)하거나, 그림 파일을 끌어다 놓을 수 있어요. (저장 시 자동으로 크기를 줄여 JSON에 함께 담깁니다)</span>
+              </div>
+            </div>
+            <div class="d4-q"><span>문항</span></div>
+            <div class="d4-explain">학생이 답안을 작성할 발문과 배점을 적습니다. 문항이 둘 이상이면 ‘문항 추가’를 누르세요.</div>
+            <div id="d4_questBox"></div>
+            <button class="btn btn-ghost btn-sm add-row-btn" data-html2canvas-ignore="true" onclick="d4Add('quest')">＋ 문항 추가</button>
+          </div>
+        </div>
+
+        <div class="card capture-unit4">
+          <div class="card-head"><h3>05 채점기준표</h3><span class="stage">[⑤ 채점기준]</span></div>
+          <div class="card-body">
+            <p class="hint">문항별로 평가 요소와 채점 요소를 정하고, 수준별 배점과 수행 수준(채점기준)을 적습니다. 평가 요소·채점 요소·수준은 표 안의 ‘＋’ 버튼으로 늘리고 ‘삭제’로 줄입니다.</p>
+            <div class="d4-explain"><b>채점 요소</b>: 학생의 수행결과를 평가할 때 무엇을 어떻게 평가할지를 구체적으로 제시한 기준 · <b>배점</b>: 학생이 응답한 내용을 질적 특성에 따라 구분·분류하기 위해 각 수준별 점수를 제시 · <b>수행 수준</b>: 학생이 응답한 내용이 어떤 수준에 해당하는지를 판단하기 위한 기준. 수준별로 질적 차이가 드러나도록 진술</div><p style="display:none"></p>
+            <div id="d4_rubricBox"></div>
+            <button class="btn btn-ghost btn-sm add-row-btn" data-html2canvas-ignore="true" onclick="d4Add('rubric')">＋ 문항 추가 (채점기준표)</button>
+            <div class="tbl-wrap"><table class="grid d4-notes"><tbody>
+              <tr><td class="cat-label" style="width:120px">예시 답안</td><td><textarea class="autogrow" id="d4_sample" rows="4"></textarea></td></tr>
+              <tr><td class="cat-label" style="width:120px">채점 시 유의점</td><td><textarea class="autogrow" id="d4_scoreNote" rows="3"></textarea></td></tr>
+              <tr><td class="cat-label" style="width:120px">피드백 시 유의점</td><td><textarea class="autogrow" id="d4_fbNote" rows="3"></textarea></td></tr>
+            </tbody></table></div>
+          </div>
+        </div>
+
+        <div class="card capture-unit4">
+          <div class="card-head"><h3>06 점검 및 성찰 체크리스트</h3><span class="stage">[⑥ 최종 점검]</span></div>
+          <div class="card-body">
+            <p class="hint">교육과정-수업-평가의 연계를 최종 점검합니다.</p>
+<div class="d4-q"><span class="d4-badge">1</span><span>점검 및 성찰 체크리스트</span></div><div class="d4-explain">평가 문항 제작 후 ‘교육과정-수업-평가’의 유기적 연계를 최종 점검하는 단계로, 해당 항목에 ✓ 표시</div>
+            <div class="tbl-wrap"><table class="grid">
+              <thead><tr><th style="width:96px">점검 단계</th><th>점검 항목</th><th style="width:56px;text-align:center;">확인</th></tr></thead>
+              <tbody><tr><td class="cat-label" rowspan="3" style="width:96px">교육과정 ↕ 수업</td><td>핵심 아이디어와 성취기준이 개별 차시의 탐구 질문 및 학습 활동에 명확히 반영되었는가?</td><td style="width:56px;text-align:center;"><input type="checkbox" id="d4_ck1" style="width:18px;height:18px;"></td></tr>
+<tr><td>성취기준에서 요구하는 기능을 학생들이 직접 수행해 볼 수 있도록 수업이 구성되었는가?</td><td style="width:56px;text-align:center;"><input type="checkbox" id="d4_ck2" style="width:18px;height:18px;"></td></tr>
+<tr><td>지식·이해와 과정·기능이 단순 암기를 넘어 학생의 삶과 연계된 실제적 맥락 안에서 다루어지는가?</td><td style="width:56px;text-align:center;"><input type="checkbox" id="d4_ck3" style="width:18px;height:18px;"></td></tr>
+<tr><td class="cat-label" rowspan="4" style="width:96px">수업 ↕ 평가</td><td>정기시험 논술형 문항에서 요구하는 수행 능력을 수업에서 충분히 연습하였는가?</td><td style="width:56px;text-align:center;"><input type="checkbox" id="d4_ck4" style="width:18px;height:18px;"></td></tr>
+<tr><td>평가 요소가 단원의 첫 차시부터 마지막 차시까지 반복적·점진적으로 누적 및 심화되도록 계열화되어 설계되었는가?</td><td style="width:56px;text-align:center;"><input type="checkbox" id="d4_ck5" style="width:18px;height:18px;"></td></tr>
+<tr><td>차시별 형성평가와 피드백이 정기시험 논술형 문항을 성공적으로 수행하기 위한 디딤돌(Scaffolding) 역할을 하고 있는가?</td><td style="width:56px;text-align:center;"><input type="checkbox" id="d4_ck6" style="width:18px;height:18px;"></td></tr>
+<tr><td>평가 문항의 자료 형식과 발문 방식(조건 포함)이 학생들이 수업 시간에 이미 경험한 친숙한 내용인가?</td><td style="width:56px;text-align:center;"><input type="checkbox" id="d4_ck7" style="width:18px;height:18px;"></td></tr>
+<tr><td class="cat-label" rowspan="4" style="width:96px">평가 ↕ 교육과정</td><td>단편적인 지식의 기억이나 교과서 내용을 그대로 암기하여 인용하는 단답·단문형 방식을 지양하고, 학생이 자신의 지식을 스스로 구성하여 표현하는 문항인가?</td><td style="width:56px;text-align:center;"><input type="checkbox" id="d4_ck8" style="width:18px;height:18px;"></td></tr>
+<tr><td>본 평가 문항이 성취기준에서 요구하는 핵심 역량과 실제적인 수행 능력을 타당하게 측정하는가?</td><td style="width:56px;text-align:center;"><input type="checkbox" id="d4_ck9" style="width:18px;height:18px;"></td></tr>
+<tr><td>학생이 자신만의 관점과 독창적인 근거를 논리적인 글로 표현할 수 있도록 설계되었는가?</td><td style="width:56px;text-align:center;"><input type="checkbox" id="d4_ck10" style="width:18px;height:18px;"></td></tr>
+<tr><td>채점기준표의 수행 수준이 교육과정의 성취수준(A~E) 및 평가 요소와 일관되게 연결되어 있는가?</td><td style="width:56px;text-align:center;"><input type="checkbox" id="d4_ck11" style="width:18px;height:18px;"></td></tr></tbody>
+            </table></div>
+<div class="d4-q"><span class="d4-badge">2</span><span>학생의 성장을 돕는 성찰</span></div><div class="d4-explain">단원 교수 전 배경지식 진단부터, 교수 중 관찰 및 피드백, 교수 후 학습 결손 보완 및 차기 단원 환류 계획까지의 일련의 흐름을 기술</div>
+            <div class="d4-sublabel">단원 교수 전 (설계 및 진단)</div>
+            <textarea class="autogrow" id="d4_reflPre" rows="3" placeholder="한 줄에 하나씩"></textarea>
+            <div class="d4-sublabel">단원 교수 중 (관찰 및 조정)</div>
+            <textarea class="autogrow" id="d4_reflMid" rows="3" placeholder="한 줄에 하나씩"></textarea>
+            <div class="d4-sublabel">단원 교수 후 (평가 및 환류)</div>
+            <textarea class="autogrow" id="d4_reflPost" rows="3" placeholder="한 줄에 하나씩"></textarea>
+            <div class="callout teal"><span>📌</span><span>완성한 내용은 상단의 <b>Word(.docx)</b> 또는 <b>PDF 다운로드</b> 버튼으로 내려받고, <b>저장(JSON)</b>으로 보관하면 나중에 <b>불러오기</b>로 이어서 쓸 수 있어요.</span></div>
           </div>
         </div>
 
@@ -2434,7 +2733,8 @@ https://github.com/nodeca/pako/blob/main/LICENSE
         },
         priority: { p1: val("d3_priority1"), p2: val("d3_priority2"), p3: val("d3_priority3"), overall: val("d3_overall") },
         closing: { selfReflect: val("d3_selfReflect") }
-      }
+      },
+      day4: collectDay4()
     };
   }
 
@@ -2579,6 +2879,8 @@ https://github.com/nodeca/pako/blob/main/LICENSE
         if(d3.priority){ setVal("d3_priority1", d3.priority.p1); setVal("d3_priority2", d3.priority.p2); setVal("d3_priority3", d3.priority.p3); setVal("d3_overall", d3.priority.overall); }
         if(d3.closing){ setVal("d3_selfReflect", d3.closing.selfReflect); }
       }
+      // 클래스4(논술형 평가도구)는 이 기능이 생긴 뒤 저장된 파일에만 있다 — 없으면 빈 양식으로 되돌린다.
+      if(data.day4){ applyDay4(data.day4); }
     } else {
       // 예전 형식의 파일 — 1일차 자료로 인식하고 1일차 화면으로 전환해서 바로 보여준다.
       switchDay("day1");
@@ -2667,7 +2969,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
     try{
       var htmlText = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
       var blob = new Blob([htmlText], {type:"text/html"});
-      var result = await saveFile("교육과정-수업-평가_통합설계_워크북.html", blob, "text/html", { allowPicker: false });
+      var result = await saveFile("수업탐구연수플랫폼_웹앱.html", blob, "text/html", { allowPicker: false });
       if(result === "error"){
         alert("다운로드에 실패했습니다. 브라우저 메뉴의 '다른 이름으로 저장'(Ctrl/Cmd+S)으로도 저장할 수 있습니다.");
       }
@@ -2681,7 +2983,8 @@ https://github.com/nodeca/pako/blob/main/LICENSE
     var data = collectState();
     var json = JSON.stringify(data, null, 2);
     // 1·2일차 데이터를 한 파일에 함께 저장하므로 파일명은 일차와 무관하게 통합 표기한다.
-    var filename = (isAuto ? "통합설계활동지_자동저장_" : "통합설계활동지_") + fileSafeName() + "_" + dateStamp() + ".json";
+    var prefix = (typeof currentDay !== "undefined" && currentDay === "day4") ? "논술형평가도구_" : "통합설계활동지_";
+    var filename = (isAuto ? prefix + "자동저장_" : prefix) + fileSafeName() + "_" + dateStamp() + ".json";
     // 수동 저장(버튼 클릭)일 때만 저장 위치·파일명을 고르는 대화상자를 띄우고, 자동저장은 조용히 기존 방식대로 저장한다.
     var result = await saveFile(filename, json, "application/json", { allowPicker: !isAuto });
     if(result === "saved"){
@@ -2724,7 +3027,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
   function switchDay(day){
     currentDay = day;
     document.querySelectorAll(".day-tab").forEach(function(t){ t.classList.toggle("active", t.dataset.day===day); });
-    ["day1Section","day2Section","day3Section"].forEach(function(id){
+    ["day1Section","day2Section","day3Section","day4Section"].forEach(function(id){
       var el = $(id);
       if(el) el.style.display = (id === day+"Section") ? "" : "none";
     });
@@ -2734,6 +3037,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
     document.querySelectorAll(".topbar-day1-only").forEach(function(el){ el.style.display = (day !== "day1") ? "none" : ""; });
     // "과목"은 2일차(본인이 설계하는 단원의 교과)에서만 상단바에 노출 — 0번 "교과/학년(군)"과 값을 함께 공유한다.
     document.querySelectorAll(".topbar-day2-only").forEach(function(el){ el.style.display = (day === "day2") ? "" : "none"; });
+    if(day === "day4"){ autoGrowAll(); }
     if(day === "day2"){
       if(!d2MatrixBound){ d2m3.bind(); d2MatrixBound = true; }
       syncD2UnitStrip();
@@ -2803,7 +3107,8 @@ https://github.com/nodeca/pako/blob/main/LICENSE
       var cursorY = margin, started = false;
       var isDay2 = (currentDay === "day2");
       var isDay3 = (currentDay === "day3");
-      var captureSel = isDay3 ? "#day3Section .capture-unit3" : (isDay2 ? "#day2Section .capture-unit2" : "#day1Section .capture-unit");
+      var isDay4 = (currentDay === "day4");
+      var captureSel = isDay4 ? "#day4Section .capture-unit4" : isDay3 ? "#day3Section .capture-unit3" : (isDay2 ? "#day2Section .capture-unit2" : "#day1Section .capture-unit");
       var units = Array.prototype.slice.call(document.querySelectorAll(captureSel));
 
       // 캔버스가 너무 커지면(매트릭스처럼 가로로 긴 표 등) 브라우저의 캔버스 크기 한도를 넘어
@@ -2888,7 +3193,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
         }
       }
       var blob = pdf.output("blob");
-      var pdfNamePrefix = isDay3 ? "3회차교차점검_" : (isDay2 ? "2회차교육과정작성_" : "1회차우수사례분석_");
+      var pdfNamePrefix = isDay4 ? "논술형평가도구_" : isDay3 ? "3회차교차점검_" : (isDay2 ? "2회차교육과정작성_" : "1회차우수사례분석_");
       await saveFile(pdfNamePrefix+fileSafeName()+".pdf", blob, "application/pdf");
     }catch(err){
       console.error(err);
@@ -3310,7 +3615,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
     zip.file("docProps/core.xml",
       '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'+
       '<cp:coreProperties xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">'+
-      '<dc:title>'+xesc((mode==="day3" ? null : (d.unit0 && d.unit0.myTitle)) || (mode==="day3" ? "3회차 동료 교차점검" : (mode==="day2" ? "2회차 교육과정 작성1" : "1회차 우수 사례 분석")))+'</dc:title>'+
+      '<dc:title>'+xesc((mode==="day3" || mode==="day4" ? null : (d.unit0 && d.unit0.myTitle)) || (mode==="day4" ? "4회차 논술형 평가도구 개발하기 실습" : mode==="day3" ? "3회차 동료 교차점검" : (mode==="day2" ? "2회차 교육과정 작성1" : "1회차 우수 사례 분석")))+'</dc:title>'+
       '<dc:creator>2026 여주 교수평통 연수</dc:creator>'+
       '<dcterms:created xsi:type="dcterms:W3CDTF">'+new Date().toISOString()+'</dcterms:created>'+
       '<dcterms:modified xsi:type="dcterms:W3CDTF">'+new Date().toISOString()+'</dcterms:modified>'+
@@ -3320,7 +3625,19 @@ https://github.com/nodeca/pako/blob/main/LICENSE
       '<Properties xmlns="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties">'+
       '<Application>Microsoft Word</Application>'+
       '</Properties>');
-    zip.file("word/document.xml", mode==="day3" ? buildDocxXmlDay3(d) : (mode==="day2" ? buildDocxXmlDay2(d) : buildDocxXml(d)));
+    if(mode === "day4" && d.day4 && d.day4.stimImgs && d.day4.stimImgs.length){
+      var relsXml = await zip.file("word/_rels/document.xml.rels").async("string");
+      var ctXml = await zip.file("[Content_Types].xml").async("string");
+      var addRels = "";
+      d.day4.stimImgs.forEach(function(im, i){
+        var b64 = im.d.replace(/^data:image\/[a-z+]+;base64,/, "");
+        zip.file("word/media/stim"+(i+1)+".jpg", b64, {base64:true, createFolders:false});
+        addRels += '<Relationship Id="rIdStim'+(i+1)+'" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="media/stim'+(i+1)+'.jpg"/>';
+      });
+      zip.file("word/_rels/document.xml.rels", relsXml.replace("</Relationships>", addRels+"</Relationships>"));
+      zip.file("[Content_Types].xml", ctXml.replace('<Default Extension="xml"', '<Default Extension="jpg" ContentType="image/jpeg"/><Default Extension="xml"'));
+    }
+    zip.file("word/document.xml", mode==="day4" ? buildDocxXmlDay4(d) : mode==="day3" ? buildDocxXmlDay3(d) : (mode==="day2" ? buildDocxXmlDay2(d) : buildDocxXml(d)));
     return await zip.generateAsync({type:"blob", mimeType:"application/vnd.openxmlformats-officedocument.wordprocessingml.document"});
   }
 
@@ -3332,10 +3649,10 @@ https://github.com/nodeca/pako/blob/main/LICENSE
         alert("Word 파일 생성에 필요한 구성요소를 불러오지 못했습니다. 페이지를 새로고침(F5)한 뒤 다시 시도해보세요.");
         return;
       }
-      var mode = (currentDay === "day3") ? "day3" : ((currentDay === "day2") ? "day2" : "day1");
+      var mode = (currentDay === "day4") ? "day4" : (currentDay === "day3") ? "day3" : ((currentDay === "day2") ? "day2" : "day1");
       var d = collectState();
       var blob = await buildDocxBlob(d, mode);
-      var docNamePrefix = (mode==="day3") ? "3회차교차점검_" : ((mode==="day2") ? "2회차교육과정작성_" : "1회차우수사례분석_");
+      var docNamePrefix = (mode==="day4") ? "논술형평가도구_" : (mode==="day3") ? "3회차교차점검_" : ((mode==="day2") ? "2회차교육과정작성_" : "1회차우수사례분석_");
       await saveFile(docNamePrefix+fileSafeName()+".docx", blob, "application/vnd.openxmlformats-officedocument.wordprocessingml.document");
     }catch(err){
       console.error(err);
@@ -3344,6 +3661,496 @@ https://github.com/nodeca/pako/blob/main/LICENSE
       btn.textContent = oldText;
     }
   };
+
+  // ---------- 클래스4: 논술형 평가도구 설계 (독립 양식) ----------
+  // 수업 흐름·핵심 차시·문항·채점 요소는 개수가 정해져 있지 않아 '추가/삭제' 가능한 블록으로 만든다.
+  var D4_DEF = {
+    pe: { box:"d4_peBox", title:"평가 요소", min:1, defaults:1 },
+    std: { box:"d4_stdBox", title:"성취기준", min:1, defaults:1 },
+    flow: { box:"d4_flowBox", title:"흐름 구간", min:1, defaults:4 },
+    lesson: { box:"d4_lessonBox", title:"핵심 차시", min:1, defaults:2 },
+    quest: { box:"d4_questBox", title:"문항", min:1, defaults:1 },
+    rubric: { box:"d4_rubricBox", title:"채점 요소", min:1, defaults:2 }
+  };
+  function d4Html(kind, data){
+    data = data || {};
+    var e = escAttr, t = escHtml;
+    if(kind === "pe"){
+      return '<label>평가 요소</label><input type="text" data-f="elem" value="'+e(data.elem)+'">'+
+        '<label>학생 수행 내용</label><textarea class="autogrow" data-f="perf" rows="2">'+t(data.perf)+'</textarea>';
+    }
+    if(kind === "std"){
+      var rows = ["A","B","C","D","E"].map(function(L){
+        return '<tr><td class="cat-label" style="width:64px">'+L+'</td><td><textarea class="autogrow" data-f="'+L+'" rows="1">'+t(data[L])+'</textarea></td></tr>';
+      }).join("");
+      return '<label>성취기준<small>성취기준 코드와 문장</small></label><textarea class="autogrow" data-f="std" rows="2">'+t(data.std)+'</textarea>'+
+        '<div class="tbl-wrap"><table class="grid"><thead><tr><th style="width:64px">수준</th><th>성취기준별 성취수준</th></tr></thead><tbody>'+rows+'</tbody></table></div>';
+    }
+    if(kind === "flow"){
+      return '<label>차시 구간</label><input type="text" data-f="range" placeholder="예: 1차시 / 2~3차시 / 4~5차시 / 6차시" value="'+e(data.range)+'">'+
+        '<label>수업 내용</label><textarea class="autogrow" data-f="content" rows="2">'+t(data.content)+'</textarea>';
+    }
+    if(kind === "lesson"){
+      return '<label>차시</label><input type="text" data-f="period" placeholder="예: 1차시" value="'+e(data.period)+'">'+
+        '<label>탐구 질문<small>학생들이 교과별 탐구활동과 전이가 일어나도록 하는 질문</small></label><textarea class="autogrow" data-f="question" rows="2">'+t(data.question)+'</textarea>'+
+        '<label>학습 활동<small>탐구 질문을 해결하기 위한 학생 중심 활동 (한 줄에 하나씩)</small></label><textarea class="autogrow" data-f="activity" rows="3">'+t(data.activity)+'</textarea>'+
+        '<label>형성평가<small>해당 차시에서 학생들의 성취 여부를 확인하는 평가 방법</small></label><textarea class="autogrow" data-f="formative" rows="2">'+t(data.formative)+'</textarea>'+
+        '<label>피드백<small>교수·학습 과정과 평가 결과에서 드러난 다양한 학습의 증거를 바탕으로 학생에게 정보를 제공하여, 학생이 자신의 학습 상태를 이해하고 성공적인 학습에 이르도록 구체적인 방향을 제시</small></label><textarea class="autogrow" data-f="feedback" rows="2">'+t(data.feedback)+'</textarea>'+
+        '<label>논술형 문항 연계 평가 요소<small>해당 차시의 학습 활동과 연계된 평가 요소 기술</small></label><textarea class="autogrow" data-f="element" rows="2">'+t(data.element)+'</textarea>';
+    }
+    if(kind === "quest"){
+      return '<label>발문 (문항)</label><textarea class="autogrow" data-f="text" rows="3" placeholder="예: [A], [B]에 사용된 논증 방법을 밝히고, …평가하시오.">'+t(data.text)+'</textarea>'+
+        '<label>배점</label><input type="text" data-f="points" inputmode="numeric" style="max-width:120px;" placeholder="10" value="'+e(data.points)+'">';
+    }
+    // rubric
+    var lv = (data.levels && data.levels.length) ? data.levels : [{},{},{}];
+    return '<label>문항 번호</label><input type="text" data-f="q" style="max-width:140px;" placeholder="예: 1" value="'+e(data.q)+'">'+
+      '<label>평가 요소</label><textarea class="autogrow" data-f="elem" rows="2">'+t(data.elem)+'</textarea>'+
+      '<label>채점 요소<small>학생의 수행결과를 평가할 때 무엇을 어떻게 평가할지를 구체적으로 제시한 기준</small></label><textarea class="autogrow" data-f="scoring" rows="2">'+t(data.scoring)+'</textarea>'+
+      '<label>배점 · 수행 수준 (채점기준)<small>배점: 학생이 응답한 내용을 질적 특성에 따라 구분·분류하기 위해 각 수준별 점수를 제시<br>수행 수준: 학생이 응답한 내용이 어떤 수준에 해당하는지를 판단하기 위한 기준. 수준별로 질적 차이가 드러나도록 진술</small></label>'+
+      '<div data-f="levels">'+lv.map(function(l){ return d4LevelHtml(l); }).join("")+'</div>'+
+      '<div class="d4-lv-btns" data-html2canvas-ignore="true"><button type="button" class="btn btn-ghost btn-sm" onclick="d4AddLevel(this)">＋ 수준 추가</button></div>';
+  }
+  function d4LevelHtml(l){
+    l = l || {};
+    return '<div class="d4-lv"><input type="text" data-f="pt" inputmode="numeric" placeholder="배점" value="'+escAttr(l.pt)+'"><textarea class="autogrow" data-f="desc" rows="2" placeholder="수행 수준(채점기준)">'+escHtml(l.desc)+'</textarea><button type="button" class="btn-danger-ghost" data-html2canvas-ignore="true" onclick="d4RemoveLevel(this)">삭제</button></div>';
+  }
+  // ---------- 클래스4: 장학자료 27·29쪽 표 형식 (수업 흐름도 · 차시별 연계 설계 · 채점기준표) ----------
+  function d4Auto(root){ (root||document).querySelectorAll("textarea.autogrow").forEach(autoGrow); }
+  // (1) 수업 흐름도: 구간이 '열'로 늘어나는 가로 표
+  var d4Flow = [];
+  function d4FlowSync(){
+    var box = $("d4_flowBox"); if(!box || !box.querySelector("table")) return;
+    var cols = box.querySelectorAll("[data-fi]");
+    cols.forEach(function(el){ var i = +el.getAttribute("data-fi"), f = el.getAttribute("data-f"); if(d4Flow[i]) d4Flow[i][f] = el.value; });
+  }
+  function d4FlowRender(){
+    var box = $("d4_flowBox"); if(!box) return;
+    var n = d4Flow.length, e = escAttr, t = escHtml;
+    var h = '<div class="tbl-wrap"><table class="grid d4-flowtbl"><thead><tr><th colspan="'+n+'" style="text-align:center">수업 흐름도</th></tr><tr>';
+    d4Flow.forEach(function(c,i){ h += '<td class="d4-flow-h"><input type="text" data-fi="'+i+'" data-f="range" placeholder="예: 1차시" value="'+e(c.range)+'" style="text-align:center;font-weight:700"></td>'; });
+    h += '</tr></thead><tbody><tr>';
+    d4Flow.forEach(function(c,i){ h += '<td><textarea class="autogrow" data-fi="'+i+'" data-f="content" rows="3" placeholder="수업 내용">'+t(c.content)+'</textarea></td>'; });
+    h += '</tr><tr class="d4-act-row" data-html2canvas-ignore="true">';
+    d4Flow.forEach(function(c,i){ h += '<td style="text-align:center"><button type="button" class="btn-danger-ghost" onclick="d4FlowDel('+i+')">이 구간 삭제</button></td>'; });
+    h += '</tr></tbody></table></div>';
+    box.innerHTML = h; d4Auto(box);
+  }
+  window.d4FlowDel = function(i){
+    d4FlowSync();
+    if(d4Flow.length <= 1){ alert("최소 1개 구간은 남겨 두어야 해요. 내용만 지워서 사용하세요."); return; }
+    d4Flow.splice(i,1); d4FlowRender(); setDirty(true);
+  };
+  function d4FlowSet(arr){ d4Flow = (arr && arr.length) ? arr.map(function(r){ return {range:r.range||"", content:r.content||""}; }) : [{},{},{},{}]; d4FlowRender(); }
+
+  // (2) 핵심 차시별 연계 설계: 차시 | 탐구 질문 및 학습 활동 | 형성평가 및 피드백 | 연계 평가 요소
+  function d4LessonInit(){
+    var box = $("d4_lessonBox"); if(!box || box.querySelector("table")) return;
+    box.innerHTML = '<div class="tbl-wrap"><table class="grid d4-lessontbl"><thead><tr>'+
+      '<th style="width:74px;text-align:center">차시</th><th style="text-align:center">탐구 질문 및 학습 활동</th><th style="text-align:center">형성평가 및 피드백</th><th class="d4-peach-h" style="text-align:center">논술형 문항<br>연계 평가 요소</th><th class="d4-act" data-html2canvas-ignore="true" style="width:64px"></th>'+
+      '</tr></thead><tbody></tbody></table></div>';
+  }
+  function d4LessonRow(data){
+    data = data || {}; d4LessonInit();
+    var tb = $("d4_lessonBox").querySelector("tbody"), e = escAttr, t = escHtml;
+    var tr = document.createElement("tr");
+    tr.innerHTML =
+      '<td style="text-align:center"><input type="text" data-f="period" placeholder="예: 1" value="'+e(data.period)+'" style="text-align:center;font-weight:700"></td>'+
+      '<td><div class="d4-boxed"><input type="text" data-f="question" placeholder="탐구 질문" value="'+e(data.question)+'"></div><textarea class="autogrow" data-f="activity" rows="4" placeholder="학습 활동 (한 줄에 하나씩)">'+t(data.activity)+'</textarea></td>'+
+      '<td><div class="d4-tag">[형성평가]</div><textarea class="autogrow" data-f="formative" rows="3">'+t(data.formative)+'</textarea><div class="d4-tag">[피드백]</div><textarea class="autogrow" data-f="feedback" rows="3">'+t(data.feedback)+'</textarea></td>'+
+      '<td class="d4-peach"><textarea class="autogrow" data-f="element" rows="3" placeholder="예: 평가 요소 1 · …">'+t(data.element)+'</textarea></td>'+
+      '<td class="d4-act" data-html2canvas-ignore="true"><button type="button" class="btn-danger-ghost" onclick="d4LessonDel(this)">삭제</button></td>';
+    tb.appendChild(tr); d4Auto(tr);
+  }
+  window.d4LessonDel = function(btn){
+    var tb = $("d4_lessonBox").querySelector("tbody");
+    if(tb.querySelectorAll("tr").length <= 1){ alert("최소 1행은 남겨 두어야 해요. 내용만 지워서 사용하세요."); return; }
+    btn.closest("tr").remove(); setDirty(true);
+  };
+  function d4LessonSet(arr){
+    var box = $("d4_lessonBox"); if(!box) return; box.innerHTML = ""; d4LessonInit();
+    if(arr && arr.length) arr.forEach(function(r){ d4LessonRow(r); }); else { d4LessonRow({}); d4LessonRow({}); }
+  }
+  function d4LessonCollect(){
+    var out = [], box = $("d4_lessonBox");
+    if(!box) return out;
+    box.querySelectorAll("tbody tr").forEach(function(tr){
+      var o = {}; ["period","question","activity","formative","feedback","element"].forEach(function(f){ var el = tr.querySelector('[data-f="'+f+'"]'); o[f] = el ? el.value : ""; });
+      out.push(o);
+    });
+    return out;
+  }
+
+  // (3) 채점기준표: 문항 → 평가 요소 → 채점 요소 → 수준별(배점·수행 수준) 의 병합 표
+  var d4Rub = [];
+  function d4NewS(){ return {scoring:"", levels:[{pt:"",desc:""},{pt:"",desc:""},{pt:"",desc:""}]}; }
+  function d4NewE(){ return {elem:"", scorings:[d4NewS()]}; }
+  function d4RubSync(){
+    var box = $("d4_rubricBox"); if(!box || !box.querySelector("table")) return;
+    box.querySelectorAll("[data-p]").forEach(function(el){
+      var p = el.getAttribute("data-p").split(",").map(Number), f = el.getAttribute("data-f");
+      try{
+        if(f === "elem") d4Rub[p[0]].elems[p[1]].elem = el.value;
+        else if(f === "scoring") d4Rub[p[0]].elems[p[1]].scorings[p[2]].scoring = el.value;
+        else d4Rub[p[0]].elems[p[1]].scorings[p[2]].levels[p[3]][f] = el.value;
+      }catch(err){}
+    });
+  }
+  function d4RubRender(){
+    var box = $("d4_rubricBox"); if(!box) return;
+    var e = escAttr, t = escHtml;
+    var h = '<div class="tbl-wrap"><table class="grid d4-rubtbl"><thead><tr><th style="width:84px;text-align:center">문항</th><th style="text-align:center">평가 요소</th><th style="text-align:center">채점 요소</th><th style="width:72px;text-align:center">배점</th><th style="text-align:center">수행 수준 (채점기준)</th><th class="d4-act" data-html2canvas-ignore="true" style="width:118px"></th></tr></thead><tbody>';
+    d4Rub.forEach(function(q, qi){
+      var qRows = 0; q.elems.forEach(function(el){ el.scorings.forEach(function(s){ qRows += s.levels.length; }); });
+      var firstQ = true;
+      q.elems.forEach(function(el, ei){
+        var eRows = 0; el.scorings.forEach(function(s){ eRows += s.levels.length; });
+        var firstE = true;
+        el.scorings.forEach(function(s, si){
+          s.levels.forEach(function(l, li){
+            h += '<tr>';
+            if(firstQ){ firstQ = false;
+              h += '<td rowspan="'+qRows+'" class="cat-label" style="text-align:center"><div style="font-size:15px">'+(qi+1)+'</div><div class="d4-cellbtns" data-html2canvas-ignore="true"><button type="button" class="btn btn-ghost btn-sm" onclick="d4RubOp(\'addE\','+qi+')">＋ 평가 요소</button><button type="button" class="btn-danger-ghost" onclick="d4RubOp(\'delQ\','+qi+')">문항 삭제</button></div></td>';
+            }
+            if(firstE){ firstE = false;
+              h += '<td rowspan="'+eRows+'"><textarea class="autogrow" data-p="'+qi+','+ei+'" data-f="elem" rows="3">'+t(el.elem)+'</textarea><div class="d4-cellbtns" data-html2canvas-ignore="true"><button type="button" class="btn btn-ghost btn-sm" onclick="d4RubOp(\'addS\','+qi+','+ei+')">＋ 채점 요소</button><button type="button" class="btn-danger-ghost" onclick="d4RubOp(\'delE\','+qi+','+ei+')">삭제</button></div></td>';
+            }
+            if(li === 0){
+              h += '<td rowspan="'+s.levels.length+'"><textarea class="autogrow" data-p="'+qi+','+ei+','+si+'" data-f="scoring" rows="3">'+t(s.scoring)+'</textarea><div class="d4-cellbtns" data-html2canvas-ignore="true"><button type="button" class="btn-danger-ghost" onclick="d4RubOp(\'delS\','+qi+','+ei+','+si+')">삭제</button></div></td>';
+            }
+            h += '<td><input type="text" inputmode="numeric" data-p="'+qi+','+ei+','+si+','+li+'" data-f="pt" value="'+e(l.pt)+'" style="text-align:center"></td>'+
+                 '<td><textarea class="autogrow" data-p="'+qi+','+ei+','+si+','+li+'" data-f="desc" rows="2">'+t(l.desc)+'</textarea></td>'+
+                 '<td class="d4-act" data-html2canvas-ignore="true"><button type="button" class="btn btn-ghost btn-sm" title="이 수준 아래에 수준 추가" onclick="d4RubOp(\'addL\','+qi+','+ei+','+si+','+li+')">＋ 수준</button><button type="button" class="btn-danger-ghost" onclick="d4RubOp(\'delL\','+qi+','+ei+','+si+','+li+')">삭제</button></td>';
+            h += '</tr>';
+          });
+        });
+      });
+    });
+    h += '</tbody></table></div>';
+    box.innerHTML = h; d4Auto(box);
+  }
+  window.d4RubOp = function(op, qi, ei, si, li){
+    d4RubSync();
+    var q = d4Rub[qi], el = q && q.elems[ei], s = el && el.scorings[si];
+    var warn = function(m){ alert(m); };
+    if(op === "addQ"){ d4Rub.push({elems:[d4NewE()]}); }
+    else if(op === "delQ"){ if(d4Rub.length <= 1) return warn("문항은 최소 1개가 필요해요. 내용만 지워서 사용하세요."); d4Rub.splice(qi,1); }
+    else if(op === "addE"){ q.elems.push(d4NewE()); }
+    else if(op === "delE"){ if(q.elems.length <= 1) return warn("문항마다 평가 요소는 최소 1개가 필요해요."); q.elems.splice(ei,1); }
+    else if(op === "addS"){ el.scorings.push(d4NewS()); }
+    else if(op === "delS"){ if(el.scorings.length <= 1) return warn("평가 요소마다 채점 요소는 최소 1개가 필요해요."); el.scorings.splice(si,1); }
+    else if(op === "addL"){ s.levels.splice(li+1,0,{pt:"",desc:""}); }
+    else if(op === "delL"){ if(s.levels.length <= 1) return warn("채점 요소마다 수준은 최소 1개가 필요해요."); s.levels.splice(li,1); }
+    d4RubRender(); setDirty(true);
+  };
+  function d4RubSet(arr){
+    d4Rub = (arr && arr.length) ? JSON.parse(JSON.stringify(arr)) : [{elems:[d4NewE()]}];
+    d4Rub.forEach(function(q){ if(!q.elems || !q.elems.length) q.elems = [d4NewE()]; q.elems.forEach(function(el){ if(!el.scorings || !el.scorings.length) el.scorings = [d4NewS()]; el.scorings.forEach(function(s){ if(!s.levels || !s.levels.length) s.levels = [{pt:"",desc:""}]; }); }); });
+    d4RubRender();
+  }
+  function d4RubCollect(){ d4RubSync(); return JSON.parse(JSON.stringify(d4Rub)); }
+  // 예전 저장 파일(채점 요소가 평평한 목록이던 형식) → 문항·평가 요소가 같은 연속 행끼리 묶어서 이어받는다
+  function d4RubFromOld(old){
+    if(!old || !old.length) return null;
+    var out = [], lastQ = null, lastE = null, lastQKey = null, lastEKey = null;
+    old.forEach(function(r){
+      var qk = (r.q||"").trim();
+      if(!out.length || (qk && qk !== lastQKey)){ lastQ = {elems:[]}; out.push(lastQ); lastQKey = qk; lastE = null; lastEKey = null; }
+      var ek = (r.elem||"").trim();
+      if(!lastE || (ek && ek !== lastEKey)){ lastE = {elem:r.elem||"", scorings:[]}; lastQ.elems.push(lastE); lastEKey = ek; }
+      lastE.scorings.push({scoring:r.scoring||"", levels:(r.levels&&r.levels.length)?r.levels:[{pt:"",desc:""}]});
+    });
+    return out;
+  }
+
+  function d4Renumber(kind){
+    var def = D4_DEF[kind]; var box = $(def.box); if(!box) return;
+    box.querySelectorAll(".d4-item").forEach(function(it, i){
+      var s = it.querySelector(".d4-item-head > span"); if(s) s.textContent = def.title + " " + (i+1);
+    });
+  }
+  window.d4Add = function(kind, data, silent){
+    if(kind === "flow"){ d4FlowSync(); d4Flow.push({range:"",content:""}); d4FlowRender(); if(!silent) setDirty(true); return; }
+    if(kind === "lesson"){ d4LessonRow(data||{}); if(!silent) setDirty(true); return; }
+    if(kind === "rubric"){ d4RubOp("addQ"); return; }
+    var def = D4_DEF[kind]; var box = $(def.box); if(!box) return;
+    var it = document.createElement("div");
+    it.className = "d4-item"; it.setAttribute("data-kind", kind);
+    it.innerHTML = '<div class="d4-item-head"><span></span><button type="button" class="btn-danger-ghost" data-html2canvas-ignore="true" onclick="d4Remove(this)">삭제</button></div>' + d4Html(kind, data);
+    box.appendChild(it);
+    d4Renumber(kind);
+    it.querySelectorAll("textarea").forEach(autoGrow);
+    if(!silent) setDirty(true);
+  };
+  window.d4Remove = function(btn){
+    var it = btn.closest(".d4-item"); if(!it) return;
+    var kind = it.getAttribute("data-kind"); var def = D4_DEF[kind];
+    if($(def.box).querySelectorAll(".d4-item").length <= def.min){ alert("최소 1개는 남겨 두어야 해요. 내용만 지워서 사용하세요."); return; }
+    it.remove(); d4Renumber(kind); setDirty(true);
+  };
+  window.d4AddLevel = function(btn){
+    var wrap = btn.closest(".d4-item").querySelector('[data-f="levels"]');
+    var tmp = document.createElement("div"); tmp.innerHTML = d4LevelHtml({});
+    wrap.appendChild(tmp.firstChild); setDirty(true);
+  };
+  window.d4RemoveLevel = function(btn){
+    var wrap = btn.closest('[data-f="levels"]');
+    if(wrap.querySelectorAll(".d4-lv").length <= 1){ alert("수준 칸은 최소 1개가 필요해요."); return; }
+    btn.closest(".d4-lv").remove(); setDirty(true);
+  };
+  function d4Fill(kind, arr){
+    if(kind === "flow") return d4FlowSet(arr);
+    if(kind === "lesson") return d4LessonSet(arr);
+    if(kind === "rubric") return d4RubSet(arr);
+    var box = $(D4_DEF[kind].box); if(!box) return;
+    box.innerHTML = "";
+    if(arr && arr.length){ arr.forEach(function(r){ window.d4Add(kind, r, true); }); }
+    else { for(var i=0;i<D4_DEF[kind].defaults;i++) window.d4Add(kind, {}, true); }
+  }
+  function d4Reset(){ ["pe","std","flow","lesson","quest","rubric"].forEach(function(k){ d4Fill(k, null); }); }
+  function d4Items(kind, fields){
+    if(kind === "flow"){ d4FlowSync(); return d4Flow.map(function(c){ return {range:c.range, content:c.content}; }); }
+    if(kind === "lesson") return d4LessonCollect();
+    var box = $(D4_DEF[kind].box); var out = [];
+    if(!box) return out;
+    box.querySelectorAll(".d4-item").forEach(function(it){
+      var o = {};
+      fields.forEach(function(f){ var el = it.querySelector('[data-f="'+f+'"]'); o[f] = el ? el.value : ""; });
+      if(kind === "rubric"){
+        o.levels = Array.prototype.slice.call(it.querySelectorAll(".d4-lv")).map(function(lv){
+          return { pt: lv.querySelector('[data-f="pt"]').value, desc: lv.querySelector('[data-f="desc"]').value };
+        });
+      }
+      out.push(o);
+    });
+    return out;
+  }
+  // ---------- 클래스4: 제시 자료 그림 ----------
+  var d4Imgs = []; // {d: dataURL, w, h}
+  function d4RenderImgs(){
+    var box = $("d4_imgBox"); if(!box) return;
+    box.innerHTML = "";
+    d4Imgs.forEach(function(im, i){
+      var w = document.createElement("div"); w.className = "d4-img";
+      var img = document.createElement("img"); img.src = im.d; img.alt = "제시 자료 그림 "+(i+1);
+      var del = document.createElement("button"); del.type = "button"; del.className = "btn-danger-ghost d4-img-del"; del.textContent = "삭제";
+      del.setAttribute("data-html2canvas-ignore","true");
+      del.addEventListener("click", function(){ d4Imgs.splice(i,1); d4RenderImgs(); setDirty(true); });
+      w.appendChild(img); w.appendChild(del); box.appendChild(w);
+    });
+  }
+  function d4AddImageFile(file){
+    return new Promise(function(resolve){
+      if(!file || !/^image\//.test(file.type)){ resolve(); return; }
+      var fr = new FileReader();
+      fr.onload = function(){
+        var img = new Image();
+        img.onload = function(){
+          var MAXW = 1600, sc = Math.min(1, MAXW / img.naturalWidth);
+          var w = Math.max(1, Math.round(img.naturalWidth*sc)), h = Math.max(1, Math.round(img.naturalHeight*sc));
+          var cv = document.createElement("canvas"); cv.width = w; cv.height = h;
+          var cx = cv.getContext("2d"); cx.fillStyle = "#ffffff"; cx.fillRect(0,0,w,h); cx.drawImage(img,0,0,w,h);
+          d4Imgs.push({d: cv.toDataURL("image/jpeg", 0.88), w: w, h: h});
+          resolve();
+        };
+        img.onerror = function(){ alert("이 그림 파일은 읽을 수 없어요. (png, jpg 등 일반 그림 파일만 가능)"); resolve(); };
+        img.src = fr.result;
+      };
+      fr.onerror = function(){ resolve(); };
+      fr.readAsDataURL(file);
+    });
+  }
+  async function d4AddImageFiles(files){
+    for(var i=0;i<files.length;i++){ await d4AddImageFile(files[i]); }
+    d4RenderImgs(); setDirty(true);
+  }
+  document.addEventListener("DOMContentLoaded", function(){
+    var inp = $("d4_imgInput"), wrap = $("d4_stimWrap");
+    if(inp) inp.addEventListener("change", function(){ d4AddImageFiles(Array.prototype.slice.call(inp.files)); inp.value = ""; });
+    document.addEventListener("paste", function(e){
+      if(!wrap || !e.target || !wrap.contains(e.target)) return;
+      var files = Array.prototype.slice.call((e.clipboardData && e.clipboardData.files) || []).filter(function(f){ return /^image\//.test(f.type); });
+      if(files.length){ e.preventDefault(); d4AddImageFiles(files); }
+    });
+    if(wrap){
+      wrap.addEventListener("dragover", function(e){ if(e.dataTransfer && Array.prototype.some.call(e.dataTransfer.types||[], function(t){ return t==="Files"; })){ e.preventDefault(); wrap.classList.add("d4-drag"); } });
+      wrap.addEventListener("dragleave", function(){ wrap.classList.remove("d4-drag"); });
+      wrap.addEventListener("drop", function(e){
+        wrap.classList.remove("d4-drag");
+        var files = Array.prototype.slice.call((e.dataTransfer && e.dataTransfer.files) || []).filter(function(f){ return /^image\//.test(f.type); });
+        if(files.length){ e.preventDefault(); d4AddImageFiles(files); }
+      });
+    }
+  });
+
+  var D4_IDS = ["level","grade","subject","area","unit","idea","know","do","value",
+    "elements",
+    "timing","minTotal","minUse","points","meta","auth","persp","focus",
+    "stimulus","sample","scoreNote","fbNote","reflPre","reflMid","reflPost"];
+  function collectDay4(){
+    var o = {};
+    D4_IDS.forEach(function(k){ o[k] = val("d4_"+k); });
+    o.comp = Array.prototype.slice.call(document.querySelectorAll("#d4_comp .d4-comp:checked")).map(function(c){ return c.value; });
+    o.ck = []; for(var i=1;i<=11;i++) o.ck.push(chk("d4_ck"+i));
+    o.stimImgs = d4Imgs.map(function(im){ return {d: im.d, w: im.w, h: im.h}; });
+    o.pes = d4Items("pe", ["elem","perf"]);
+    o.stds = d4Items("std", ["std","A","B","C","D","E"]);
+    o.flow = d4Items("flow", ["range","content"]);
+    o.lesson = d4Items("lesson", ["period","question","activity","formative","feedback","element"]);
+    o.quest = d4Items("quest", ["text","points"]);
+    o.rubricQ = d4RubCollect();
+    return o;
+  }
+  function applyDay4(d4){
+    D4_IDS.forEach(function(k){ setVal("d4_"+k, d4[k]); });
+    var cs = d4.comp; if(typeof cs === "string"){ var raw = cs; cs = []; document.querySelectorAll("#d4_comp .d4-comp").forEach(function(c){ if(raw.replace(/\s/g,"").indexOf(c.value.replace(/\s/g,"").replace(" 역량","").replace("역량",""))!==-1) cs.push(c.value); }); }
+    document.querySelectorAll("#d4_comp .d4-comp").forEach(function(c){ c.checked = !!(cs && cs.indexOf(c.value) !== -1); });
+    for(var i=1;i<=11;i++) setChk("d4_ck"+i, d4.ck && d4.ck[i-1]);
+    var stds = d4.stds;
+    if(!stds && (d4.std1 || d4.std2 || d4.std1_A)){ // 예전 저장 파일(성취기준 1·2 고정 칸) 호환
+      stds = [];
+      [1,2].forEach(function(n){
+        var o = {std:d4["std"+n]||""}, any = !!o.std;
+        ["A","B","C","D","E"].forEach(function(L){ o[L] = d4["std"+n+"_"+L]||""; if(o[L]) any = true; });
+        if(n===1 || any) stds.push(o);
+      });
+    }
+    var pes = d4.pes;
+    if(!pes && (d4.pe1||d4.pp1||d4.pe2||d4.pp2||d4.pe3||d4.pp3)){ // 예전 저장 파일(평가 요소 1~3 고정 칸) 호환
+      pes = [];
+      [1,2,3].forEach(function(n){ if(n===1 || d4["pe"+n] || d4["pp"+n]) pes.push({elem:d4["pe"+n]||"", perf:d4["pp"+n]||""}); });
+    }
+    d4Imgs = (d4.stimImgs || []).filter(function(im){ return im && typeof im.d === "string" && im.d.indexOf("data:image/") === 0; }).map(function(im){ return {d: im.d, w: im.w||800, h: im.h||600}; });
+    d4RenderImgs();
+    d4Fill("pe", pes);
+    d4Fill("std", stds);
+    d4Fill("flow", d4.flow); d4Fill("lesson", d4.lesson); d4Fill("quest", d4.quest); d4RubSet(d4.rubricQ || d4RubFromOld(d4.rubric));
+    autoGrowAll();
+  }
+  function buildDocxXmlDay4(d){
+    var d4 = d.day4 || {};
+    var body = "";
+    body += wPara("논술형 평가도구 개발하기 실습", {bold:true, size:22, color:"1F5C5C", spacingAfter:40});
+    body += wPara("2026 중등 정기시험 논술형 평가도구(국어과) 양식 · 2026학년도 2학기 여주교육지원청 서논술형 평가 및 AI 활용 교원 직무연수(국어과) · 클래스4", {size:10, spacingAfter:200});
+    body += wLabelValueTable([["소속(학교)", d.meta.school], ["성명", d.meta.name]]);
+    body += wPara("", {spacingAfter:160});
+    var lines = function(s){ return s || ""; };
+
+    body += wBanner("01 교육과정 분석  [① 성취기준 → 평가 요소]");
+    body += wLabelValueTable([
+      ["학교급", d4.level], ["학년/학기", d4.grade], ["과목", d4.subject], ["영역", d4.area],
+      ["단원/주제", d4.unit], ["교과 역량", (d4.comp||[]).join(", ")], ["핵심 아이디어", d4.idea],
+      ["내용 요소 · 지식·이해", d4.know], ["내용 요소 · 과정·기능", d4["do"]], ["내용 요소 · 가치·태도", d4.value]
+    ], 2600);
+    body += wPara("", {spacingAfter:80});
+    body += wPara("성취기준과 성취기준별 성취수준", {bold:true, spacingAfter:40});
+    (d4.stds||[]).forEach(function(r, i){
+      body += wLabelValueTable([
+        ["성취기준 "+(i+1), r.std],
+        ["수준 A", r.A], ["수준 B", r.B], ["수준 C", r.C], ["수준 D", r.D], ["수준 E", r.E]
+      ], 2000);
+      body += wPara("", {spacingAfter:60});
+    });
+    body += wLabelValueTable([["평가 요소", d4.elements]], 2600);
+    body += wPara("", {spacingAfter:160});
+
+    body += wBanner("02 정기시험 논술형 평가도구 설계  [② 출제 개요]");
+    body += wLabelValueTable([
+      ["평가 시기", d4.timing],
+      ["평가 시간", (d4.minTotal||d4.minUse) ? ("전체 "+(d4.minTotal||"")+"분 중 "+(d4.minUse||"")+"분 소요 예상") : ""],
+      ["총 배점", d4.points ? d4.points+"점" : ""],
+      ["출제 의도 · 메타인지", d4.meta], ["출제 의도 · 실제성", d4.auth], ["출제 의도 · 관점", d4.persp]
+    ], 2600);
+    body += wPara("", {spacingAfter:80});
+    body += wDataTable(["평가 요소","학생 수행 내용"], (d4.pes||[]).map(function(r){ return [r.elem, r.perf]; }), [3000, DOCX_FULL_W-3000]);
+    body += wPara("", {spacingAfter:80});
+    body += wLabelValueTable([["수업-평가 연계 주안점", d4.focus]], 2600);
+    body += wPara("", {spacingAfter:160});
+
+    body += wBanner("03 수업-평가 연계 설계  [③ 차시별 연계]");
+    body += wPara("수업 흐름도", {bold:true, spacingAfter:40});
+    var fl = (d4.flow && d4.flow.length) ? d4.flow : [{range:"",content:""}];
+    var FCH = 6; // Word에서는 구간이 6개를 넘으면 6개씩 끊어 다음 줄 표로 이어 붙여 글자가 너무 좁아지지 않게 한다
+    for(var fs0 = 0; fs0 < fl.length; fs0 += FCH){
+      var part = fl.slice(fs0, fs0 + FCH);
+      body += wDataTable(part.map(function(r){ return r.range || " "; }), [part.map(function(r){ return r.content; })], new Array(part.length).fill(Math.floor(DOCX_FULL_W / Math.min(FCH, Math.max(fl.length, 1)))));
+      if(fs0 + FCH < fl.length) body += wPara("", {spacingAfter:60});
+    }
+    body += wPara("", {spacingAfter:100});
+    body += wPara("핵심 차시별 연계 설계", {bold:true, spacingAfter:40});
+    body += wDataTable(["차시","탐구 질문 및 학습 활동","형성평가 및 피드백","연계 평가 요소"], (d4.lesson||[]).map(function(r){
+      return [r.period, "[탐구 질문] "+(r.question||"")+"\n[학습 활동] "+(r.activity||""), "[형성평가] "+(r.formative||"")+"\n[피드백] "+(r.feedback||""), r.element];
+    }), [900, 3300, 3100, DOCX_FULL_W-900-3300-3100]);
+    body += wPara("", {spacingAfter:160});
+
+    body += wBanner("04 논술형 평가 문항  [④ 실제 문항]");
+    body += wLabelValueTable([["제시 자료", d4.stimulus]], 2000);
+    (d4.stimImgs||[]).forEach(function(im, i){
+      var cx = Math.min(5400000, Math.round(im.w * 9525)), cy = Math.round(cx * im.h / im.w), id = 100 + i;
+      body += '<w:p><w:pPr><w:spacing w:before="80" w:after="80"/></w:pPr><w:r><w:drawing><wp:inline distT="0" distB="0" distL="0" distR="0"><wp:extent cx="'+cx+'" cy="'+cy+'"/><wp:docPr id="'+id+'" name="그림 '+(i+1)+'" descr="제시 자료 그림 '+(i+1)+'"/>'+
+        '<a:graphic xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"><a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture"><pic:pic xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture"><pic:nvPicPr><pic:cNvPr id="'+id+'" name="stim'+(i+1)+'.jpg"/><pic:cNvPicPr/></pic:nvPicPr><pic:blipFill><a:blip r:embed="rIdStim'+(i+1)+'"/><a:stretch><a:fillRect/></a:stretch></pic:blipFill><pic:spPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="'+cx+'" cy="'+cy+'"/></a:xfrm><a:prstGeom prst="rect"><a:avLst/></a:prstGeom></pic:spPr></pic:pic></a:graphicData></a:graphic></wp:inline></w:drawing></w:r></w:p>';
+    });
+    body += wPara("", {spacingAfter:80});
+    body += wDataTable(["문항","발문","배점"], (d4.quest||[]).map(function(r,i){ return [""+(i+1), r.text, r.points]; }), [900, DOCX_FULL_W-900-1200, 1200]);
+    body += wPara("", {spacingAfter:160});
+
+    body += wBanner("05 채점기준표  [⑤ 채점기준]");
+    var RW = [800, 1900, 2000, 800, DOCX_FULL_W-800-1900-2000-800];
+    var vcell = function(text, w, vm, opts){
+      opts = opts || {};
+      var shd = opts.fill ? '<w:shd w:val="clear" w:fill="'+opts.fill+'"/>' : '';
+      var vmx = vm === "restart" ? '<w:vMerge w:val="restart"/>' : (vm === "cont" ? '<w:vMerge/>' : '');
+      return '<w:tc><w:tcPr><w:tcW w:w="'+w+'" w:type="dxa"/>'+vmx+shd+'</w:tcPr>'+(vm === "cont" ? '<w:p/>' : wPara(text, {bold:opts.bold}))+'</w:tc>';
+    };
+    var hdr = wRow(["문항","평가 요소","채점 요소","배점","수행 수준(채점기준)"].map(function(h,i){ return wCell(h, {bold:true, fill:"E8F1F1", width:RW[i]}); }));
+    var rr = [];
+    (d4.rubricQ||[]).forEach(function(q, qi){
+      var firstQ = true;
+      (q.elems||[]).forEach(function(el){
+        var firstE = true;
+        (el.scorings||[]).forEach(function(sc){
+          (sc.levels||[]).forEach(function(l, li){
+            var cells = [];
+            cells.push(vcell(""+(qi+1), RW[0], firstQ ? "restart" : "cont", {bold:true, fill:"E8F1F1"}));
+            cells.push(vcell(el.elem, RW[1], firstE ? "restart" : "cont"));
+            cells.push(vcell(sc.scoring, RW[2], li === 0 ? "restart" : "cont"));
+            cells.push(wCell(l.pt, {width:RW[3]}));
+            cells.push(wCell(l.desc, {width:RW[4]}));
+            rr.push(wRow(cells));
+            firstQ = false; firstE = false;
+          });
+        });
+      });
+    });
+    body += wTable([hdr].concat(rr), RW);
+    body += wPara("", {spacingAfter:80});
+    body += wLabelValueTable([["예시 답안", d4.sample], ["채점 시 유의점", d4.scoreNote], ["피드백 시 유의점", d4.fbNote]], 2000);
+    body += wPara("", {spacingAfter:160});
+
+    body += wBanner("06 점검 및 성찰 체크리스트  [⑥ 최종 점검]");
+    var ck = d4.ck || [];
+    var items = [
+      ["교육과정 ↕ 수업","핵심 아이디어와 성취기준이 개별 차시의 탐구 질문 및 학습 활동에 명확히 반영되었는가?"],
+      ["","성취기준에서 요구하는 기능을 학생들이 직접 수행해 볼 수 있도록 수업이 구성되었는가?"],
+      ["","지식·이해와 과정·기능이 단순 암기를 넘어 학생의 삶과 연계된 실제적 맥락 안에서 다루어지는가?"],
+      ["수업 ↕ 평가","정기시험 논술형 문항에서 요구하는 수행 능력을 수업에서 충분히 연습하였는가?"],
+      ["","평가 요소가 단원의 첫 차시부터 마지막 차시까지 반복적·점진적으로 누적 및 심화되도록 계열화되어 설계되었는가?"],
+      ["","차시별 형성평가와 피드백이 정기시험 논술형 문항을 성공적으로 수행하기 위한 디딤돌(Scaffolding) 역할을 하고 있는가?"],
+      ["","평가 문항의 자료 형식과 발문 방식(조건 포함)이 학생들이 수업 시간에 이미 경험한 친숙한 내용인가?"],
+      ["평가 ↕ 교육과정","단편적인 지식의 기억이나 교과서 내용을 그대로 암기하여 인용하는 단답·단문형 방식을 지양하고, 학생이 자신의 지식을 스스로 구성하여 표현하는 문항인가?"],
+      ["","본 평가 문항이 성취기준에서 요구하는 핵심 역량과 실제적인 수행 능력을 타당하게 측정하는가?"],
+      ["","학생이 자신만의 관점과 독창적인 근거를 논리적인 글로 표현할 수 있도록 설계되었는가?"],
+      ["","채점기준표의 수행 수준이 교육과정의 성취수준(A~E) 및 평가 요소와 일관되게 연결되어 있는가?"]
+    ];
+    body += wDataTable(["점검 단계","점검 항목","확인"], items.map(function(it,i){ return [it[0], it[1], ox(ck[i])]; }), [1700, DOCX_FULL_W-1700-800, 800]);
+    body += wPara("", {spacingAfter:100});
+    body += wPara("학생의 성장을 돕는 성찰", {bold:true, spacingAfter:40});
+    body += wLabelValueTable([["단원 교수 전 (설계 및 진단)", d4.reflPre], ["단원 교수 중 (관찰 및 조정)", d4.reflMid], ["단원 교수 후 (평가 및 환류)", d4.reflPost]], 2600);
+
+    return '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'+
+      '<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><w:body>'+body+
+      '<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="1417" w:right="1417" w:bottom="1417" w:left="1417"/></w:sectPr></w:body></w:document>';
+  }
 
   // ---------- 초기화 ----------
   function updateGraspsUI(){
@@ -3365,6 +4172,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
 
   document.addEventListener("DOMContentLoaded", function(){
     populateRows("m4Body", window.addM4Row, null);
+    d4Reset();
     populateRows("m5Body", window.addM5Row, null);
     populateRows("d2m1AreaWrap", window.addD2M1Area, null);
     syncMetaStrip();
